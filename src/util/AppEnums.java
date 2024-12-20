@@ -1,20 +1,25 @@
-enum StatusTransaksi{
-    Pending,
-    Accepted,
-    Rejected,
-    Running,
-    Due,
-    Done
-}
+package util;
 
-enum RentalInterval{
-    Hour,
-    Day,
-    Week,
-    Month
-}
+public class AppEnums {
+    public enum StatusTransaksi {
+        Pending,
+        Accepted,
+        Rejected,
+        Running,
+        Due,
+        Done
+    }
 
-enum Roles{
-    ADMIN,
-    OPERATOR
+    public enum RentalInterval {
+        Hour,
+        Day,
+        Week,
+        Month
+    }
+
+    public enum Roles {
+        ADMIN,
+        OPERATOR
+    }
+
 }
