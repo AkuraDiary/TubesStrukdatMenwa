@@ -18,7 +18,6 @@ public class DllUser {
             nn.setPrev(tail);
             tail = nn;
         }
-//        System.out.println("User Inserted At The End ");
     }
 
     /* Insert First */
@@ -77,7 +76,18 @@ public class DllUser {
         current.setPrev(newNode);
     }
 
-    public void delete(int id) {
+    public User searchById(int id) {
+        NodeUser current = head;
+        while (current != null) {
+            if (current.getData().getId() == id) {
+                return current.getData();
+            }
+            current = current.getNext();
+        }
+        return null;
+    }
+
+    public void deleteById(int id) {
         if (head == null) {
             System.out.println("List is empty");
             return;
@@ -136,7 +146,30 @@ public class DllUser {
         return size;
     }
 
-    public void printList() {
+    public void deleteFirst() {
+        if (head == null) {
+            return;
+        }
+        if (head == tail) {
+            head = tail = null;
+        } else {
+            head = head.getNext();
+            head.setPrev(null);
+        }
+    }
+
+    public void deleteLast() {
+        if (head == null) {
+            return;
+        }
+        if (head == tail) {
+            head = tail = null;
+        } else {
+            tail = tail.getPrev();
+            tail.setNext(null);
+        }
+    }
+    public void displau() {
         NodeUser current = head;
         while (current != null) {
             System.out.println(current.getData().toString() + " ");
@@ -144,5 +177,6 @@ public class DllUser {
         }
         System.out.println();
     }
+
 
 }
