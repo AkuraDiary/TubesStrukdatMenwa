@@ -15,10 +15,11 @@ public class UserPresenter {
     }
 
     public User selectedUser = null;
-    public User loggedInUser = userRepository.getLoggedInUser();
+    public User loggedInUser =null;
 
     public void doLogin(String username, String password) {
         userRepository.getUserLogin(username, password);
+        loggedInUser = userRepository.getLoggedInUser();
     }
 
     public void doLogout() {
