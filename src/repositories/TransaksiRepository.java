@@ -82,4 +82,18 @@ public class TransaksiRepository {
         selectedTransaksiList = temp;
     }
 
+    public void selectTransaksiByUserId(
+            int id
+    ) {
+        NodeTransaksi current = transaksiDataSource.transaksiList.getHead();
+        DllTransaksi temp = new DllTransaksi();
+        while (current != null) {
+            if (current.getData().getPic().getId() == id) {
+                temp.insertLast(current.getData());
+            }
+            current = current.getNext();
+        }
+        selectedTransaksiList = temp;
+    }
+
 }

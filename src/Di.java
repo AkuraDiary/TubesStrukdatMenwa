@@ -4,6 +4,9 @@ import data.sources.*;
 import repositories.ProdukRepository;
 import repositories.UserRepository;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Di {
     // DATASOURCES
     ProductDataSource productDataSource;
@@ -20,8 +23,13 @@ public class Di {
 
     //MENUS
 
+    //INPUTS
+    BufferedReader inputReader;
+
     public Di() {
         System.out.println("DI Initialization");
+        inputReader = new BufferedReader(new InputStreamReader(System.in));
+
         productDataSource = new ProductDataSource();
         customerDataSource = new CustomerDataSource();
         laporanDataSource = new LaporanDataSource();

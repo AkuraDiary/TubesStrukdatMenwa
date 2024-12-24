@@ -21,6 +21,10 @@ public class UserRepository {
     public void saveUser(
             User user
     ) {
+        int size = userDataSource.userList.getSize();
+        if(user.getId() == -1){
+            user.setId(size + 1);
+        }
         userDataSource.userList.insertSorted(user);
     }
 
@@ -51,6 +55,10 @@ public class UserRepository {
         loggedInUser = null;
     }
 
+    public void doLogout() {
+        loggedInUser = null;
+    }
+
     public void selectUserById(int id) {
         selectedUser = userDataSource.userList.searchById(id);
     }
@@ -61,6 +69,7 @@ public class UserRepository {
 
 
     public void selectAllOperator() {
+        listKaryawan.clear();
         NodeUser current = userDataSource.userList.getHead();
         while (current != null) {
             if (current.getData().getRole() == AppEnums.Roles.OPERATOR) {
@@ -70,4 +79,7 @@ public class UserRepository {
         }
     }
 
+    public User getSelectedUser() {
+        return selectedUser;
+    }
 }
