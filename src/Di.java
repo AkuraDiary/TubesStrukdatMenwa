@@ -21,6 +21,7 @@ public class Di {
     //MENUS
 
     public Di() {
+        System.out.println("DI Initialization");
         productDataSource = new ProductDataSource();
         customerDataSource = new CustomerDataSource();
         laporanDataSource = new LaporanDataSource();
@@ -29,5 +30,13 @@ public class Di {
 
         produkRepository = new ProdukRepository(productDataSource);
         userRepository = new UserRepository(userDataSource);
+
+        System.out.println("DI Initialization Done");
+    }
+
+    public void initDatasources() {
+        productDataSource.initDataProduct();
+        customerDataSource.initializeDataCustomer();
+        userDataSource.initDataUser();
     }
 }
