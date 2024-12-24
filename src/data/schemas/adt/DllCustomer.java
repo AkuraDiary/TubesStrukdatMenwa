@@ -167,7 +167,7 @@ public class DllCustomer {
     public Customer searchByName(String name) {
         NodeCustomer current = head;
         while (current != null) {
-            if (current.getData().getName().equals(name)) {
+            if (current.getData().getName().contains(name)) {
                 return current.getData();
             }
             current = current.getNext();
