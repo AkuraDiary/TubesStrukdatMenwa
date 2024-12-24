@@ -136,6 +136,7 @@ public class DllProduk {
             current = current.getNext();
         }
     }
+
     public int getSize() {
         NodeProduk current = head;
         size = 0;
@@ -152,5 +153,16 @@ public class DllProduk {
             System.out.println(current.getData());
             current = current.getNext();
         }
+    }
+
+    public Produk searchById(int id) {
+        NodeProduk current = head;
+        while (current != null) {
+            if (current.getData().getProdukId() == id) {
+                return current.getData();
+            }
+            current = current.getNext();
+        }
+        return null;
     }
 }
