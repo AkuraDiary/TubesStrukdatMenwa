@@ -14,6 +14,26 @@ public class NodeUser {
         this.prev = null;
     }
 
+    public void setData(User data) {
+        this.data = data;
+    }
+
+    public NodeUser getNext() {
+        return next;
+    }
+
+    public void setNext(NodeUser next) {
+        this.next = next;
+    }
+
+    public NodeUser getPrev() {
+        return prev;
+    }
+
+    public void setPrev(NodeUser prev) {
+        this.prev = prev;
+    }
+
     public User getData() {
         return data;
     }
