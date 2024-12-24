@@ -89,6 +89,10 @@ public class DllProduk {
         }
     }
 
+    public void clear() {
+        head = null;
+        tail = null;
+    }
 
     public void deleteFirst() {
         if (head == null) {

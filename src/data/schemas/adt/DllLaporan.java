@@ -7,6 +7,8 @@ public class DllLaporan {
     NodeLaporan head;
     NodeLaporan tail;
 
+
+
     public DllLaporan() {
         head = null;
         tail = null;
@@ -68,7 +70,7 @@ public class DllLaporan {
         }
     }
 
-    public void insertSortedByTanggal(Laporan laporan){
+    public void insertSortedByTanggal(Laporan laporan) {
         NodeLaporan newNode = new NodeLaporan(laporan);
         if (head == null) {
             head = newNode;
@@ -96,4 +98,41 @@ public class DllLaporan {
 
     }
 
+    public void deleteById(int idLaporan) {
+        NodeLaporan current = head;
+        while (current != null && current.getData().getIdLaporan() != idLaporan) {
+            current = current.getNext();
+        }
+        if (current != null) {
+            if (current == head) {
+                deleteFirst();
+            } else if (current == tail) {
+                deleteLast();
+            } else {
+                current.getPrev().setNext(current.getNext());
+                current.getNext().setPrev(current.getPrev());
+            }
+        }
+    }
+
+    public Laporan searchById(int id) {
+        NodeLaporan current = head;
+        while (current != null && current.getData().getIdLaporan() != id) {
+            current = current.getNext();
+        }
+        if (current != null) {
+            return current.getData();
+        } else {
+            return null;
+        }
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+    }
+
+    public NodeLaporan getHead() {
+        return head;
+    }
 }

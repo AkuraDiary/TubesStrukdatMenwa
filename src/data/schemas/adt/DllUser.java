@@ -146,6 +146,9 @@ public class DllUser {
         return size;
     }
 
+    public void clear(){
+        head = tail = null;
+    }
     public void deleteFirst() {
         if (head == null) {
             return;

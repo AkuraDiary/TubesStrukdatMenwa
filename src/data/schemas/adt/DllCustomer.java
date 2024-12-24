@@ -175,4 +175,8 @@ public class DllCustomer {
         return null;
     }
 
+    public void clear(){
+        head = tail = null;
+    }
+
 }

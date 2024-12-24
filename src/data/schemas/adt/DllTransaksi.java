@@ -23,7 +23,10 @@ public class DllTransaksi {
             head = newNode;
         }
     }
-
+    public void clear(){
+        head = null;
+        tail = null;
+    }
     public void insertLast(Transaksi data) {
         NodeTransaksi newNode = new NodeTransaksi(data);
         if (head == null) {
