@@ -49,10 +49,10 @@ public class UserRepository {
         while (head != null) {
             if (head.getData().getUsername().equals(username) && head.getData().getPassword().equals(Encryption.hashPassword(password))) {
                 loggedInUser = head.getData();
+                return;
             }
             head = head.getNext();
         }
-        loggedInUser = null;
     }
 
     public void doLogout() {

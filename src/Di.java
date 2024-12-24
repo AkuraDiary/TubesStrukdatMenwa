@@ -2,7 +2,7 @@ import data.schemas.models.Produk;
 import data.schemas.models.Transaksi;
 import data.schemas.models.User;
 import data.sources.*;
-import presenter.UserPresenter;
+import presenter.*;
 import repositories.*;
 
 import java.io.BufferedReader;
@@ -10,30 +10,32 @@ import java.io.InputStreamReader;
 
 public class Di {
     // DATASOURCES
-    ProductDataSource productDataSource;
-    CustomerDataSource customerDataSource;
-    LaporanDataSource laporanDataSource;
-    TransaksiDataSource transaksiDataSource;
-    UserDataSource userDataSource;
+    public ProductDataSource productDataSource;
+    public CustomerDataSource customerDataSource;
+    public LaporanDataSource laporanDataSource;
+    public TransaksiDataSource transaksiDataSource;
+    public UserDataSource userDataSource;
 
     //REPOSITORIES
-    ProdukRepository produkRepository;
-    UserRepository userRepository;
-    TransaksiRepository transaksiRepository;
-    CustomerRepository customerRepository;
-    LaporanRepository laporanRepository;
+    public ProdukRepository produkRepository;
+    public UserRepository userRepository;
+    public TransaksiRepository transaksiRepository;
+    public CustomerRepository customerRepository;
+    public LaporanRepository laporanRepository;
 
     //PRESENTERS
-    UserPresenter userPresenter;
+    public UserPresenter userPresenter;
+    public CustomerPresenter customerPresenter;
+    public TransaksiPresenter transaksiPresenter;
+    public LaporanPresenter laporanPresenter;
+    public ProdukPresenter produkPresenter;
 
     //MENUS
 
-    //INPUTS
-    BufferedReader inputReader;
+
 
     public Di() {
         System.out.println("DI Initialization");
-        inputReader = new BufferedReader(new InputStreamReader(System.in));
 
         productDataSource = new ProductDataSource();
         customerDataSource = new CustomerDataSource();
@@ -48,6 +50,11 @@ public class Di {
         laporanRepository = new LaporanRepository(laporanDataSource);
 
         userPresenter = new UserPresenter(userRepository);
+        customerPresenter = new CustomerPresenter(customerRepository);
+        produkPresenter = new ProdukPresenter(produkRepository);
+        laporanPresenter = new LaporanPresenter(userRepository,transaksiRepository ,laporanRepository);
+        transaksiPresenter = new TransaksiPresenter(userRepository, transaksiRepository,produkRepository,customerRepository);
+
 
         System.out.println("DI Initialization Done");
     }
