@@ -9,13 +9,16 @@ public class CustomerRepository {
     CustomerDataSource customerDataSource;
 
     public Customer selectedCustomer=null;
-    public DllCustomer selectedCustomerList=null;
+//    public DllCustomer selectedCustomerList=null;
 
     public CustomerRepository(CustomerDataSource customerDataSource) {
         this.customerDataSource = customerDataSource;
     }
 
     public void addCustomer(Customer data) {
+        if(data.getId()==-1){
+            data.setId(customerDataSource.customerList.getSize()+1);
+        }
         customerDataSource.customerList.insertSorted(data);
     }
 
@@ -34,6 +37,10 @@ public class CustomerRepository {
 
     public DllCustomer getAllCustomers() {
         return customerDataSource.customerList;
+    }
+
+    public void selectCustomerByName(String name) {
+        selectedCustomer = customerDataSource.customerList.searchByName(name);
     }
 
 }

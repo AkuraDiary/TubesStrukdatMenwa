@@ -18,6 +18,9 @@ public class TransaksiRepository {
     }
 
     public void addTransaksi(Transaksi data) {
+        if(data.getId_transaksi()==-1){
+            data.setId_transaksi(transaksiDataSource.transaksiList.getSize()+1);
+        }
         transaksiDataSource.transaksiList.insertSortedByStartDate(data);
     }
 

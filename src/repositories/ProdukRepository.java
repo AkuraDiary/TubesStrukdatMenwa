@@ -24,6 +24,9 @@ public class ProdukRepository {
     public void saveProduk(
             Produk produk
     ) {
+        if (produk.getProdukId() == -1) {
+            produk.setProdukId(productDataSource.productList.getSize() + 1);
+        }
         productDataSource.productList.insertSorted(produk);
     }
 

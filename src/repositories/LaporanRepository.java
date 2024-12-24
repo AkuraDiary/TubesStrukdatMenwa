@@ -19,6 +19,9 @@ public class LaporanRepository {
     public void saveLaporan(
             Laporan laporan
     ) {
+        if (laporan.getIdLaporan() == -1) {
+            laporan.setIdLaporan(laporanDataSource.laporanList.getSize() + 1);
+        }
         laporanDataSource.laporanList.insertSortedByTanggal(laporan);
     }
 

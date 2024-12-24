@@ -134,4 +134,14 @@ public class DllTransaksi {
         }
         return null;
     }
+
+    public int getSize() {
+        NodeTransaksi current = head;
+        int count = 0;
+        while (current != null) {
+            count++;
+            current = current.getNext();
+        }
+        return count;
+    }
 }

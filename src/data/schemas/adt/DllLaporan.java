@@ -135,4 +135,14 @@ public class DllLaporan {
     public NodeLaporan getHead() {
         return head;
     }
+
+    public int getSize() {
+        NodeLaporan current = head;
+        int count = 0;
+        while (current != null) {
+            count++;
+            current = current.getNext();
+        }
+        return count;
+    }
 }
