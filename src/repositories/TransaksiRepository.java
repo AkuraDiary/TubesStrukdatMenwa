@@ -111,4 +111,8 @@ public class TransaksiRepository {
         selectedTransaksiList = temp;
     }
 
+    public void updateTransaksi(int idTransaksi, Transaksi transaksi) {
+        transaksiDataSource.transaksiList.deleteById(idTransaksi);
+        transaksiDataSource.transaksiList.insertSortedByStartDate(transaksi);
+    }
 }

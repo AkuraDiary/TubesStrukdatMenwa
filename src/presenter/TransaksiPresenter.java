@@ -4,7 +4,6 @@ import data.schemas.adt.DllProduk;
 import data.schemas.adt.DllTransaksi;
 import data.schemas.models.Customer;
 import data.schemas.models.Transaksi;
-import data.schemas.models.User;
 import data.schemas.nodes.NodeProduk;
 import repositories.CustomerRepository;
 import repositories.ProdukRepository;
@@ -51,21 +50,31 @@ public class TransaksiPresenter {
                 customer
         );
         transaksiData.setListProduk(listProduk);
-        updateStatusProduk(listProduk);
+        updateRentProductStatus(listProduk, AppEnums.ProdukStatus.Rented);
         transaksiRepository.addTransaksi(transaksiData);
     }
 
-    public void selectTransaksi(int id){
+    public void selectTransaksi(int id) {
         transaksiRepository.selectTransaksi(id);
         selectedTransaksi = transaksiRepository.selectedTransaksi;
     }
 
-    private void updateStatusProduk(DllProduk listProduk) {
+    private void updateRentProductStatus(DllProduk listProduk, AppEnums.ProdukStatus status) {
         NodeProduk current = listProduk.getHead();
         while (current != null) {
-            current.getData().setProdukStatus(AppEnums.ProdukStatus.Rented);
+            current.getData().setProdukStatus(status);
             produkRepository.updateProduk(current.getData());
             current = current.getNext();
+        }
+    }
+
+    public void updateTransaksi(int idTransaksi, Transaksi transaksi) {
+        transaksiRepository.selectTransaksi(idTransaksi);
+//        Transaksi transaksiDetail = transaksiRepository.selectedTransaksi;
+        transaksiRepository.updateTransaksi(idTransaksi, transaksi);
+
+        if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
+          updateRentProductStatus(transaksi.getListProduk(), AppEnums.ProdukStatus.Available);
         }
     }
 
