@@ -22,4 +22,10 @@ public class AppEnums {
         OPERATOR
     }
 
+    public enum ProdukStatus {
+        Available,
+        Rented,
+        Maintenance
+    }
+
 }

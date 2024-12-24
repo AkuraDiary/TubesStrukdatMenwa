@@ -12,10 +12,6 @@ public class Transaksi {
     int id_transaksi, rental_duration, rental_fine, rental_due;
     long total_price;
 
-    // TODO MOVE THESE TO NODE
-    //    List<Produk> Products;
-    //    User pic;
-    //    Customer customer;
 
     Date rental_start, rental_end;
     AppEnums.StatusTransaksi rental_status;
@@ -122,4 +118,6 @@ public class Transaksi {
         this.rental_status = rental_status;
         this.rental_interval = rental_interval;
     }
+
+
 }

@@ -60,4 +60,15 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Customer:\n" +
+                "id: " + id +
+                "\nname: " + name +
+                "\nemail: '" + email +
+                "\nidentity_number: " + identity_number +
+                "\nphone: " + phone +
+                "\naddress: " + address;
+    }
 }

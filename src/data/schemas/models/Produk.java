@@ -4,14 +4,34 @@ import util.AppEnums;
 
 public class Produk {
     int produkId, produkRentalPrice;
-    String produkName, produkBrand;
+    AppEnums.ProdukStatus produkStatus;
+    String produkName, produkBrand, produkNumber;
     AppEnums.RentalInterval produkRentalInterval;
-    public Produk(int produkId, String produkName, String produkBrand, int produkRentalPrice, AppEnums.RentalInterval produkRentalInterval) {
+
+    public Produk(int produkId, String produkName, String produkBrand, String produkNumber, int produkRentalPrice, AppEnums.RentalInterval produkRentalInterval) {
         this.produkId = produkId;
         this.produkName = produkName;
+        this.produkNumber = produkNumber;
         this.produkBrand = produkBrand;
         this.produkRentalPrice = produkRentalPrice;
         this.produkRentalInterval = produkRentalInterval;
+        this.produkStatus = AppEnums.ProdukStatus.Available;
+    }
+
+    public AppEnums.ProdukStatus getProdukStatus() {
+        return produkStatus;
+    }
+
+    public void setProdukStatus(AppEnums.ProdukStatus produkStatus) {
+        this.produkStatus = produkStatus;
+    }
+
+    public String getProdukNumber() {
+        return produkNumber;
+    }
+
+    public void setProdukNumber(String produkNumber) {
+        this.produkNumber = produkNumber;
     }
 
     public int getProdukId() {
@@ -61,6 +81,6 @@ public class Produk {
                 "\nprodukRentalPrice: " + produkRentalPrice +
                 "\nprodukName: " + produkName +
                 "\nprodukBrand: " + produkBrand +
-                "\nprodukRentalInterval: " + produkRentalInterval ;
+                "\nprodukRentalInterval: " + produkRentalInterval;
     }
 }
