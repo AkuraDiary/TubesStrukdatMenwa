@@ -13,7 +13,7 @@ public class NodeProduk {
         this.prev = null;
     }
 
-    public data.schemas.models.Produk getData() {
+    public Produk getData() {
         return data;
     }
 
