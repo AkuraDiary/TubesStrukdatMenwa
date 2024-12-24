@@ -75,4 +75,16 @@ public class Laporan {
     public void setDateRangeEnd(Date dateRangeEnd) {
         this.dateRangeEnd = dateRangeEnd;
     }
+
+    @Override
+    public String toString() {
+        return "Laporan:\n" +
+                "idLaporan: " + idLaporan +
+                "\ncountTransactionSucceeded: " + countTransactionSucceeded +
+                "\ncountTransactionFailed: " + countTransactionFailed +
+                "\ntanggalLaporan: " + tanggalLaporan +
+                "\ntotalRevenue: " + totalRevenue +
+                "\ndateRangeStart: " + dateRangeStart +
+                "\ndateRangeEnd: " + dateRangeEnd ;
+    }
 }

@@ -53,4 +53,14 @@ public class Produk {
     public void setProdukRentalInterval(AppEnums.RentalInterval produkRentalInterval) {
         this.produkRentalInterval = produkRentalInterval;
     }
+
+    @Override
+    public String toString() {
+        return "Produk:\n" +
+                "produkId: " + produkId +
+                "\nprodukRentalPrice: " + produkRentalPrice +
+                "\nprodukName: " + produkName +
+                "\nprodukBrand: " + produkBrand +
+                "\nprodukRentalInterval: " + produkRentalInterval ;
+    }
 }

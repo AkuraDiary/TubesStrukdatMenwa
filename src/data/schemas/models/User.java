@@ -54,4 +54,13 @@ public class User {
     public void setRole(AppEnums.Roles role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "User Data\n" +
+                "id: " + id +
+                "\nusername: " + username +
+                "\nemail: " + email +
+                "\nrole: " + role;
+    }
 }
