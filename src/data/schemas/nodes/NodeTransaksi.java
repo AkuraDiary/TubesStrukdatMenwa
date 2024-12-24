@@ -6,19 +6,13 @@ import data.schemas.models.User;
 
 public class NodeTransaksi {
 
-    // TODO MOVE THESE TO NODE
-    //    List<Produk> Products;
-    //    User pic;
-    //    Customer customer;
+
     Transaksi data;
-    User pic;
-    Customer customer;
+
     NodeTransaksi next, prev;
 
-    public NodeTransaksi(Transaksi data, User pic, Customer customer) {
+    public NodeTransaksi(Transaksi data) {
         this.data = data;
-        this.pic = pic;
-        this.customer = customer;
         this.next = null;
         this.prev = null;
     }
@@ -31,21 +25,7 @@ public class NodeTransaksi {
         this.data = data;
     }
 
-    public User getPic() {
-        return pic;
-    }
 
-    public void setPic(User pic) {
-        this.pic = pic;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public NodeTransaksi getNext() {
         return next;

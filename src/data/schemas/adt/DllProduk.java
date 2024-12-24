@@ -9,6 +9,27 @@ public class DllProduk {
     NodeProduk tail;
     int size;
 
+    public DllProduk() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public NodeProduk getHead() {
+        return head;
+    }
+
+    public void setHead(NodeProduk head) {
+        this.head = head;
+    }
+
+    public NodeProduk getTail() {
+        return tail;
+    }
+
+    public void setTail(NodeProduk tail) {
+        this.tail = tail;
+    }
+
     /* Insert Last */
     public void insertEnd(Produk data) {
         NodeProduk nn = new NodeProduk(data);

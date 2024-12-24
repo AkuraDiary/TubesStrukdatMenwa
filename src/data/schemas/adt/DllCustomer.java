@@ -9,6 +9,27 @@ public class DllCustomer {
     NodeCustomer tail;
     int size;
 
+    public DllCustomer() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public NodeCustomer getHead() {
+        return head;
+    }
+
+    public void setHead(NodeCustomer head) {
+        this.head = head;
+    }
+
+    public NodeCustomer getTail() {
+        return tail;
+    }
+
+    public void setTail(NodeCustomer tail) {
+        this.tail = tail;
+    }
+
     /* Insert Last */
     public void insertEnd(Customer data) {
         NodeCustomer nn = new NodeCustomer(data);

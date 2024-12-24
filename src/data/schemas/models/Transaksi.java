@@ -1,5 +1,6 @@
 package data.schemas.models;
 
+import data.schemas.adt.DllProduk;
 import util.AppEnums;
 import util.Formatter;
 
@@ -9,13 +10,27 @@ import java.util.List;
 
 public class Transaksi {
 
+    // TODO MOVE THESE TO NODE
+    //    List<Produk> Products;
+    //    User pic;
+    //    Customer customer;
     int id_transaksi, rental_duration, rental_fine, rental_due;
     long total_price;
-
-
+    User pic;
+    Customer customer;
     Date rental_start, rental_end;
     AppEnums.StatusTransaksi rental_status;
     AppEnums.RentalInterval rental_interval;
+
+    DllProduk listProduk;
+
+    public DllProduk getListProduk() {
+        return listProduk;
+    }
+
+    public void setListProduk(DllProduk listProduk) {
+        this.listProduk = listProduk;
+    }
 
     @Override
     public String toString() {
@@ -109,7 +124,8 @@ public class Transaksi {
             Date rental_start,
             Date rental_end,
             AppEnums.StatusTransaksi rental_status,
-            AppEnums.RentalInterval rental_interval
+            AppEnums.RentalInterval rental_interval,
+            User pic, Customer customer
     ) {
         this.id_transaksi = id_transaksi;
         this.rental_duration = rental_duration;
@@ -117,7 +133,25 @@ public class Transaksi {
         this.rental_end = rental_end;
         this.rental_status = rental_status;
         this.rental_interval = rental_interval;
+        this.pic = pic;
+        this.customer = customer;
+        listProduk = new DllProduk();
     }
 
 
+    public User getPic() {
+        return pic;
+    }
+
+    public void setPic(User pic) {
+        this.pic = pic;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

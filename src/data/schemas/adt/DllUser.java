@@ -178,5 +178,23 @@ public class DllUser {
         System.out.println();
     }
 
+    public DllUser() {
+        head = tail = null;
+    }
 
+    public NodeUser getHead() {
+        return head;
+    }
+
+    public void setHead(NodeUser head) {
+        this.head = head;
+    }
+
+    public NodeUser getTail() {
+        return tail;
+    }
+
+    public void setTail(NodeUser tail) {
+        this.tail = tail;
+    }
 }
