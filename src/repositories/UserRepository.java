@@ -4,11 +4,13 @@ import data.schemas.adt.DllUser;
 import data.schemas.models.User;
 import data.schemas.nodes.NodeUser;
 import data.sources.UserDataSource;
+import util.AppEnums;
 import util.Encryption;
 
 public class UserRepository {
     UserDataSource userDataSource;
     public User selectedUser = null;
+    public DllUser listKaryawan = new DllUser();
     private User loggedInUser = null;
 
 
@@ -57,8 +59,15 @@ public class UserRepository {
         return loggedInUser;
     }
 
-    public DllUser getAllUsers() {
-        return userDataSource.userList;
+
+    public void selectAllOperator() {
+        NodeUser current = userDataSource.userList.getHead();
+        while (current != null) {
+            if (current.getData().getRole() == AppEnums.Roles.OPERATOR) {
+                listKaryawan.insertSorted(current.getData());
+            }
+            current = current.getNext();
+        }
     }
 
 }

@@ -89,17 +89,20 @@ public class DllTransaksi {
         }
     }
 
-    public void insertSortedByStartDate(){
+    public void insertSortedByStartDate(Transaksi data) {
+        NodeTransaksi newNode = new NodeTransaksi(data);
         NodeTransaksi current = head;
         while (current != null) {
-            NodeTransaksi temp = current.getNext();
-            while (temp != null) {
-                if (current.getData().getRental_start().compareTo(temp.getData().getRental_start()) > 0) {
-                    Transaksi tempData = current.getData();
-                    current.setData(temp.getData());
-                    temp.setData(tempData);
+            if (current.getData().getRental_start().compareTo(data.getRental_start()) > 0) {
+                if (current == head) {
+                    insertFirst(data);
+                } else {
+                    newNode.setNext(current);
+                    newNode.setPrev(current.getPrev());
+                    current.getPrev().setNext(newNode);
+                    current.setPrev(newNode);
                 }
-                temp = temp.getNext();
+                break;
             }
             current = current.getNext();
         }
@@ -119,5 +122,16 @@ public class DllTransaksi {
 
     public void setTail(NodeTransaksi tail) {
         this.tail = tail;
+    }
+
+    public Transaksi searchById(int id) {
+        NodeTransaksi current = head;
+        while (current != null) {
+            if (current.getData().getId_transaksi() == id) {
+                return current.getData();
+            }
+            current = current.getNext();
+        }
+        return null;
     }
 }

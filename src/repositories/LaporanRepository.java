@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class LaporanRepository {
     LaporanDataSource laporanDataSource;
-    Laporan selectedLaporan = null;
-    DllLaporan selectedLaporanList = new DllLaporan();
+    public Laporan selectedLaporan = null;
+    public  DllLaporan selectedLaporanList = new DllLaporan();
 
     public LaporanRepository(LaporanDataSource laporanDataSource) {
         this.laporanDataSource = laporanDataSource;

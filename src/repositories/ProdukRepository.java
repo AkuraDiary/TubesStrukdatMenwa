@@ -7,6 +7,7 @@ import data.sources.ProductDataSource;
 public class ProdukRepository {
     ProductDataSource productDataSource;
     public Produk selectedProduk = null;
+    public DllProduk selectedProdukList = null;
 
     public ProdukRepository(ProductDataSource productDataSource) {
         this.productDataSource = productDataSource;
@@ -43,6 +44,8 @@ public class ProdukRepository {
     ) {
         productDataSource.productList.deleteById(id);
     }
+
+
 
 
 }

@@ -8,7 +8,8 @@ public class CustomerRepository {
 
     CustomerDataSource customerDataSource;
 
-    Customer selectedCustomer;
+    public Customer selectedCustomer=null;
+    public DllCustomer selectedCustomerList=null;
 
     public CustomerRepository(CustomerDataSource customerDataSource) {
         this.customerDataSource = customerDataSource;
@@ -24,10 +25,6 @@ public class CustomerRepository {
 
     public void selectCustomer(int id) {
         selectedCustomer = customerDataSource.customerList.searchById(id);
-    }
-
-    public Customer getSelectedCustomer() {
-        return selectedCustomer;
     }
 
     public void updateCustomer(Customer data) {
