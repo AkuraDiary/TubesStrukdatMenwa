@@ -2,7 +2,9 @@ package repositories;
 
 import data.schemas.adt.DllProduk;
 import data.schemas.models.Produk;
+import data.schemas.nodes.NodeProduk;
 import data.sources.ProductDataSource;
+import util.AppEnums;
 
 public class ProdukRepository {
     ProductDataSource productDataSource;
@@ -46,6 +48,15 @@ public class ProdukRepository {
     }
 
 
-
-
+    public void selectProduksByStatus(AppEnums.ProdukStatus status) {
+        DllProduk temp = new DllProduk();
+        NodeProduk current = productDataSource.productList.getHead();
+        while (current != null) {
+            if (current.getData().getProdukStatus() == status) {
+                temp.insertSorted(current.getData());
+            }
+            current = current.getNext();
+        }
+        selectedProdukList = temp;
+    }
 }

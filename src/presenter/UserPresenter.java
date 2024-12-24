@@ -9,7 +9,7 @@ public class UserPresenter {
     UserRepository userRepository;
 
     public UserPresenter(
-            UserRepository userRepository,
+            UserRepository userRepository
     ) {
         this.userRepository = userRepository;
     }
