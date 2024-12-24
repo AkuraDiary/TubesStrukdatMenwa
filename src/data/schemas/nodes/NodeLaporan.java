@@ -1,25 +1,27 @@
 package data.schemas.nodes;
 
+import data.schemas.models.Laporan;
+
 public class NodeLaporan {
-    String data;
+    Laporan data;
     NodeLaporan next, prev;
 
-    public NodeLaporan(String data) {
+    public NodeLaporan(Laporan data) {
         this.data = data;
         this.next = null;
         this.prev = null;
     }
 
-    public String getData() {
+    public Laporan getData() {
         return data;
+    }
+
+    public void setData(Laporan data) {
+        this.data = data;
     }
 
     public NodeLaporan getNext() {
         return next;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public void setNext(NodeLaporan next) {
