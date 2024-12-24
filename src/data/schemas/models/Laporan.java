@@ -1,23 +1,72 @@
 package data.schemas.models;
 
+import data.schemas.adt.DllTransaksi;
+import data.schemas.nodes.NodeTransaksi;
+import util.AppEnums;
+
 import java.util.Date;
 import java.util.List;
 
 public class Laporan {
-    int idLaporan, countTransactionSucceeded, countTransactionFailed;
+    int idLaporan, countTransactionSucceeded, countTransactionFailed, countTransaksiPending;
     Date tanggalLaporan;
     Long totalRevenue;
     Date dateRangeStart;
     Date dateRangeEnd;
+    DllTransaksi listTransaksi;
+    DllTransaksi listTransaksiSucceeded;
 
-    public Laporan(int idLaporan, int countTransactionSucceeded, int countTransactionFailed, Date tanggalLaporan, Long totalRevenue, Date dateRangeStart, Date dateRangeEnd) {
+    public Laporan(
+            int idLaporan,
+            Date tanggalLaporan,
+            Date dateRangeStart,
+            Date dateRangeEnd,
+            DllTransaksi listTransaksi
+    ) {
         this.idLaporan = idLaporan;
-        this.countTransactionSucceeded = countTransactionSucceeded;
-        this.countTransactionFailed = countTransactionFailed;
         this.tanggalLaporan = tanggalLaporan;
-        this.totalRevenue = totalRevenue;
         this.dateRangeStart = dateRangeStart;
         this.dateRangeEnd = dateRangeEnd;
+        this.listTransaksi = listTransaksi;
+
+        cookTransaksiSucceeded();
+        cookTransaksiFailed();
+        cookTransaksiPending();
+        cookTotalRevenue();
+    }
+
+    private void cookTransaksiPending() {
+        NodeTransaksi current = listTransaksi.getHead();
+        while (current != null) {
+            if (current.getData().getRental_status() != AppEnums.StatusTransaksi.Accepted && current.getData().getRental_status() != AppEnums.StatusTransaksi.Rejected) {
+                countTransaksiPending++;
+            }
+            current = current.getNext();
+        }
+    }
+
+    private void cookTotalRevenue() {
+    }
+
+    private void cookTransaksiFailed() {
+        NodeTransaksi current = listTransaksi.getHead();
+        while (current != null) {
+            if (current.getData().getRental_status() == AppEnums.StatusTransaksi.Rejected) {
+                countTransactionFailed++;
+            }
+            current = current.getNext();
+        }
+    }
+
+    private void cookTransaksiSucceeded() {
+        NodeTransaksi current = listTransaksi.getHead();
+        while (current != null) {
+            if (current.getData().getRental_status() == AppEnums.StatusTransaksi.Done) {
+                countTransactionSucceeded++;
+                listTransaksiSucceeded.insertSortedByStartDate(current.getData());
+            }
+            current = current.getNext();
+        }
     }
 
     public int getIdLaporan() {
@@ -32,49 +81,41 @@ public class Laporan {
         return countTransactionSucceeded;
     }
 
-    public void setCountTransactionSucceeded(int countTransactionSucceeded) {
-        this.countTransactionSucceeded = countTransactionSucceeded;
-    }
-
     public int getCountTransactionFailed() {
         return countTransactionFailed;
     }
 
-    public void setCountTransactionFailed(int countTransactionFailed) {
-        this.countTransactionFailed = countTransactionFailed;
+    public int getCountTransaksiPending() {
+        return countTransaksiPending;
+    }
+
+    public DllTransaksi getListTransaksi() {
+        return listTransaksi;
+    }
+
+    public DllTransaksi getListTransaksiSucceeded() {
+        return listTransaksiSucceeded;
     }
 
     public Date getTanggalLaporan() {
         return tanggalLaporan;
     }
 
-    public void setTanggalLaporan(Date tanggalLaporan) {
-        this.tanggalLaporan = tanggalLaporan;
-    }
 
     public Long getTotalRevenue() {
         return totalRevenue;
     }
 
-    public void setTotalRevenue(Long totalRevenue) {
-        this.totalRevenue = totalRevenue;
-    }
 
     public Date getDateRangeStart() {
         return dateRangeStart;
     }
 
-    public void setDateRangeStart(Date dateRangeStart) {
-        this.dateRangeStart = dateRangeStart;
-    }
 
     public Date getDateRangeEnd() {
         return dateRangeEnd;
     }
 
-    public void setDateRangeEnd(Date dateRangeEnd) {
-        this.dateRangeEnd = dateRangeEnd;
-    }
 
     @Override
     public String toString() {

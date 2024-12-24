@@ -44,6 +44,18 @@ public class TransaksiRepository {
         selectedTransaksiList = temp;
     }
 
+    public DllTransaksi selectTransaksisByDate(Date dateStart, Date dateEnd) {
+        NodeTransaksi current = transaksiDataSource.transaksiList.getHead();
+        DllTransaksi temp = new DllTransaksi();
+        while (current != null) {
+            if (current.getData().getRental_start().after(dateStart) && current.getData().getRental_start().before(dateEnd)) {
+                temp.insertLast(current.getData());
+            }
+            current = current.getNext();
+        }
+        return temp;
+    }
+
     public void selectTransaksisByCustomer(int id) {
         NodeTransaksi current = transaksiDataSource.transaksiList.getHead();
         DllTransaksi temp = new DllTransaksi();
