@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import static util.Formatter.invalidChoice;
 import static views.AppRouter.AppRoute.ADMiN_MENU;
+import static views.AppRouter.AppRoute.OPERATOR_MENU;
 
 public class OperatorMainMenu {
     private final UserPresenter userPresenter;
@@ -19,7 +20,7 @@ public class OperatorMainMenu {
     String inputUser;
     public void showOperatorMainMenu() {
         InputUtilities.cls();
-        while (AppRouter.activeRoute == ADMiN_MENU) {
+        while (AppRouter.activeRoute == OPERATOR_MENU) {
             System.out.println("Main Menu Admin");
             System.out.println("1. Master Customer");
             System.out.println("2. Create Transaksi");
