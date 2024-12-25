@@ -7,7 +7,6 @@ import views.AppRouter;
 import java.io.IOException;
 
 import static util.Formatter.invalidChoice;
-import static views.AppRouter.AppRoute.ADMiN_MENU;
 import static views.AppRouter.AppRoute.OPERATOR_MENU;
 
 public class OperatorMainMenu {
