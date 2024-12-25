@@ -39,9 +39,9 @@ public class UserPresenter {
         userRepository.updateUser(
                 new User(
                         id,
-                        (username == null) ? selectedUser.getUsername() : username,
-                        (password == null) ? selectedUser.getPassword() : Encryption.hashPassword(password),
-                        (email == null) ? selectedUser.getEmail() : email,
+                        (username == null || username.isEmpty()) ? selectedUser.getUsername() : username,
+                        (password == null || password.isEmpty()) ? selectedUser.getPassword() : Encryption.hashPassword(password),
+                        (email == null || email.isEmpty()) ? selectedUser.getEmail() : email,
                         AppEnums.Roles.OPERATOR
                 )
         );

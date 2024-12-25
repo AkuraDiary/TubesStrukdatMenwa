@@ -28,7 +28,14 @@ public class CustomerPresenter {
     }
 
     public void updateCustomer(int id, String name, String email, String identity_number, String phone, String address) {
-        Customer newData = new Customer(id, name, email, identity_number, phone, address);
+        Customer newData = new Customer(
+                id,
+                (name == null || name.isEmpty()) ? selectedCust.getName() : name,
+                (email == null || email.isEmpty()) ? selectedCust.getEmail() : email,
+                (identity_number == null || identity_number.isEmpty()) ? selectedCust.getIdentity_number() : identity_number,
+                (phone == null || phone.isEmpty()) ? selectedCust.getPhone() : phone,
+                (address == null || address.isEmpty()) ? selectedCust.getAddress() : address
+        );
         customerRepository.updateCustomer(newData);
     }
 
