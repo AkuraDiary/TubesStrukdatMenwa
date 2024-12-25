@@ -24,7 +24,7 @@ public class MasterProdukMenu {
         InputUtilities.cls();
         while (AppRouter.activeRoute == MASTER_PRODUK) {
             try {
-                System.out.println("Master Operator Menu");
+                System.out.println("Master Produk Menu");
                 System.out.println("1. List Produk");
                 System.out.println("2. Tambah Produk");
                 System.out.println("3. Edit Produk");
