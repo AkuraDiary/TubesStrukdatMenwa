@@ -18,7 +18,7 @@ public class AppRouter {
         PENGEMBALIAN,
 
         //ADMIN
-        ADMiN_MENU,
+        ADMIN_MENU,
         MASTER_OPERATOR,
         MASTER_LAPORAN,
         MASTER_APPROVE_TRANSAKSI,

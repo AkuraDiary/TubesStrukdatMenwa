@@ -1,8 +1,5 @@
 package views.admin;
 
-import presenter.LaporanPresenter;
-import presenter.ProdukPresenter;
-import presenter.TransaksiPresenter;
 import presenter.UserPresenter;
 import util.InputUtilities;
 import views.AppRouter;
@@ -10,8 +7,7 @@ import views.AppRouter;
 import java.io.IOException;
 
 import static util.Formatter.invalidChoice;
-import static views.AppRouter.AppRoute.ADMiN_MENU;
-import static views.AppRouter.AppRoute.LOGIN;
+import static views.AppRouter.AppRoute.ADMIN_MENU;
 
 public class AdminMainMenu {
 
@@ -24,7 +20,7 @@ public class AdminMainMenu {
     String inputUser;
     public void showAdminMainMenu() {
         InputUtilities.cls();
-        while (AppRouter.activeRoute == ADMiN_MENU) {
+        while (AppRouter.activeRoute == ADMIN_MENU) {
             System.out.println("Main Menu Admin");
             System.out.println("1. Master Operator");
             System.out.println("2. Laporan");

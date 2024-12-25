@@ -1,9 +1,7 @@
 package views.admin;
 
-import data.schemas.models.Produk;
 import presenter.ProdukPresenter;
 import util.AppEnums;
-import util.Encryption;
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
@@ -47,7 +45,7 @@ public class MasterProdukMenu {
                         hapusProduk();
                         break;
                     case "0":
-                        AppRouter.navigateTo(ADMiN_MENU);
+                        AppRouter.navigateTo(ADMIN_MENU);
                         break;
                     default:
                         invalidChoice();

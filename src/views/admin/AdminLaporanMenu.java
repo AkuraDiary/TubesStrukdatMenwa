@@ -1,9 +1,6 @@
 package views.admin;
 
-import data.schemas.models.Laporan;
 import presenter.LaporanPresenter;
-import util.AppEnums;
-import util.Encryption;
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
@@ -46,7 +43,7 @@ public class AdminLaporanMenu {
                         buatLaporanBaru();
                         break;
                     case "0":
-                        AppRouter.navigateTo(ADMiN_MENU);
+                        AppRouter.navigateTo(ADMIN_MENU);
                         break;
                     default:
                         invalidChoice();

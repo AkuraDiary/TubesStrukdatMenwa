@@ -27,8 +27,8 @@ public class TransaksiPresenter {
         this.customerRepository = customerRepository;
     }
 
-    DllTransaksi listSelectedTransaksi = new DllTransaksi();
-    Transaksi selectedTransaksi = null;
+    public DllTransaksi listSelectedTransaksi = new DllTransaksi();
+    public Transaksi selectedTransaksi = null;
 
     public void cookTransaksi(
             int rental_duration,
@@ -70,7 +70,6 @@ public class TransaksiPresenter {
 
     public void updateTransaksi(int idTransaksi, Transaksi transaksi) {
         transaksiRepository.selectTransaksi(idTransaksi);
-//        Transaksi transaksiDetail = transaksiRepository.selectedTransaksi;
         transaksiRepository.updateTransaksi(idTransaksi, transaksi);
 
         if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
@@ -78,7 +77,7 @@ public class TransaksiPresenter {
         }
     }
 
-    private void getListTransaksiFiltered(
+    public void getListTransaksiFiltered(
             Date tanggalTransaksi,
             AppEnums.StatusTransaksi statusTransaksi,
             int idCustomer,

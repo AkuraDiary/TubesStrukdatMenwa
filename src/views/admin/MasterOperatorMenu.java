@@ -47,7 +47,7 @@ public class MasterOperatorMenu {
                         hapusOperator();
                         break;
                     case "0":
-                        AppRouter.navigateTo(ADMiN_MENU);
+                        AppRouter.navigateTo(ADMIN_MENU);
                         break;
                     default:
                         invalidChoice();

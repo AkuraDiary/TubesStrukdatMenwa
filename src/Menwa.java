@@ -1,10 +1,7 @@
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
-import views.admin.AdminLaporanMenu;
-import views.admin.AdminMainMenu;
-import views.admin.MasterOperatorMenu;
-import views.admin.MasterProdukMenu;
+import views.admin.*;
 import views.auth.AuthMenu;
 import views.operator.OperatorMainMenu;
 
@@ -25,6 +22,7 @@ public class Menwa {
     MasterOperatorMenu masterOperatorMenu;
     MasterProdukMenu masterProdukMenu;
     AdminLaporanMenu adminLaporanMenu;
+    AdminTransaksiMenu adminTransaksiMenu;
 
     private void onCreate() {
 
@@ -36,6 +34,7 @@ public class Menwa {
         this.masterOperatorMenu = new MasterOperatorMenu(this.di.userPresenter);
         this.masterProdukMenu = new MasterProdukMenu(this.di.produkPresenter);
         this.adminLaporanMenu = new AdminLaporanMenu(this.di.laporanPresenter);
+        this.adminTransaksiMenu = new AdminTransaksiMenu(this.di.transaksiPresenter);
 
     }
 
@@ -51,7 +50,7 @@ public class Menwa {
                     case LOGIN:
                         this.authMenu.showLogin();
                         break;
-                    case ADMiN_MENU:
+                    case ADMIN_MENU:
                         adminMainMenu.showAdminMainMenu();
                         break;
                     case OPERATOR_MENU:
@@ -66,9 +65,10 @@ public class Menwa {
                     case MASTER_LAPORAN:
                         adminLaporanMenu.showLaporanMenu();
                         break;
-
+                    case MASTER_APPROVE_TRANSAKSI:
+                        adminTransaksiMenu.showAdminTransaksiMenu();
+                        break;
                     case EXIT:
-
                         Formatter.formatMessageOutput("Terimakasih telah menggunakan aplikasi kami");
                         Formatter.formatMessageOutput("Exiting");
                         System.exit(0);

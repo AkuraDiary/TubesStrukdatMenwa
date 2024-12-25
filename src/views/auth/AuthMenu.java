@@ -57,7 +57,7 @@ public class AuthMenu {
                 System.out.println("Login Berhasil");
                 switch (this.userPresenter.loggedInUser.getRole()) {
                     case ADMIN:
-                        AppRouter.navigateTo(AppRouter.AppRoute.ADMiN_MENU);
+                        AppRouter.navigateTo(AppRouter.AppRoute.ADMIN_MENU);
                         break;
                     case OPERATOR:
                         AppRouter.navigateTo(AppRouter.AppRoute.OPERATOR_MENU);
