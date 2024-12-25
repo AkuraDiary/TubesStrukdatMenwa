@@ -153,6 +153,9 @@ public class DllProduk {
 
     public void display() {
         NodeProduk current = head;
+        if (current == null) {
+            System.out.println("Data Kosong");
+        }
         while (current != null) {
             System.out.println(current.getData());
             current = current.getNext();

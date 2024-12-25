@@ -147,6 +147,9 @@ public class DllCustomer {
     }
     public void display() {
         NodeCustomer current = head;
+        if (current == null) {
+            System.out.println("Data Kosong");
+        }
         while (current != null) {
             System.out.println(current.getData());
             current = current.getNext();

@@ -27,7 +27,7 @@ public class AdminLaporanMenu {
         InputUtilities.cls();
         while (AppRouter.activeRoute == MASTER_LAPORAN) {
             try {
-                System.out.println("Master Operator Menu");
+                System.out.println("Master Laporan Menu");
                 System.out.println("1. List Laporan");
                 System.out.println("2. Lihat Detail Laporan");
                 System.out.println("3. Buat Laporan");

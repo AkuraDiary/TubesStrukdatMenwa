@@ -83,6 +83,9 @@ public class DllTransaksi {
 
     public void display() {
         NodeTransaksi current = head;
+        if (current == null) {
+            System.out.println("Data Kosong");
+        }
         while (current != null) {
             System.out.println(current.getData());
             current = current.getNext();

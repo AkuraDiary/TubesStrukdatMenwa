@@ -64,6 +64,9 @@ public class DllLaporan {
 
     public void display() {
         NodeLaporan current = head;
+        if (current == null) {
+            System.out.println("Data Kosong");
+        }
         while (current != null) {
             System.out.println(current.getData().overview());
             current = current.getNext();
