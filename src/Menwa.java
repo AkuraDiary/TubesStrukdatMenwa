@@ -1,6 +1,7 @@
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
+import views.admin.AdminMainMenu;
 import views.auth.AuthMenu;
 
 public class Menwa {
@@ -15,10 +16,12 @@ public class Menwa {
     }
 
     AuthMenu authMenu;
+    AdminMainMenu adminMainMenu;
     private void onCreate() {
 
         // setup the menus here
         this.authMenu = new AuthMenu(this.di.userPresenter);
+        this.adminMainMenu = new AdminMainMenu(this.di.userPresenter);
     }
 
     private void onViewCreated() {
@@ -34,7 +37,7 @@ public class Menwa {
                         this.authMenu.showLogin();
                         break;
                     case ADMiN_MENU:
-                        System.out.println("TODO ADMIN MENU");
+                        adminMainMenu.showAdminMainMenu();
                         // this.adminMenu.showMenu();
                         break;
                     case OPERATOR_MENU:
@@ -43,6 +46,7 @@ public class Menwa {
                         break;
 
                     case EXIT:
+
                         Formatter.formatMessageOutput("Terimakasih telah menggunakan aplikasi kami");
                         Formatter.formatMessageOutput("Exiting");
                         System.exit(0);
