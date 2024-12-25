@@ -1,6 +1,7 @@
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
+import views.admin.AdminLaporanMenu;
 import views.admin.AdminMainMenu;
 import views.admin.MasterOperatorMenu;
 import views.admin.MasterProdukMenu;
@@ -22,8 +23,8 @@ public class Menwa {
     AdminMainMenu adminMainMenu;
     OperatorMainMenu operatorMainMenu;
     MasterOperatorMenu masterOperatorMenu;
-
     MasterProdukMenu masterProdukMenu;
+    AdminLaporanMenu adminLaporanMenu;
 
     private void onCreate() {
 
@@ -34,6 +35,7 @@ public class Menwa {
         this.operatorMainMenu = new OperatorMainMenu(this.di.userPresenter);
         this.masterOperatorMenu = new MasterOperatorMenu(this.di.userPresenter);
         this.masterProdukMenu = new MasterProdukMenu(this.di.produkPresenter);
+        this.adminLaporanMenu = new AdminLaporanMenu(this.di.laporanPresenter);
 
     }
 
@@ -60,6 +62,9 @@ public class Menwa {
                         break;
                     case MASTER_PRODUK:
                         masterProdukMenu.showMasterProdukMenu();
+                        break;
+                    case MASTER_LAPORAN:
+                        adminLaporanMenu.showLaporanMenu();
                         break;
 
                     case EXIT:
