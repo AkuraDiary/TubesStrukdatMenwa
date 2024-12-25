@@ -84,7 +84,7 @@ public class MasterOperatorMenu {
     private void editOperator() {
         try{
             System.out.println("Pilih Operator untuk diedit");
-            System.out.print("Masukkan Id Operator untuk dipilih");
+            System.out.print("Masukkan Id Operator untuk dipilih : ");
             int idOperator = InputUtilities.readInt();
 
             userPresenter.selectUser(idOperator);
