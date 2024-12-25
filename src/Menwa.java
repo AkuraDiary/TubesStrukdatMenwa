@@ -3,6 +3,7 @@ import util.InputUtilities;
 import views.AppRouter;
 import views.admin.AdminMainMenu;
 import views.auth.AuthMenu;
+import views.operator.OperatorMainMenu;
 
 public class Menwa {
     private Di di;
@@ -17,11 +18,13 @@ public class Menwa {
 
     AuthMenu authMenu;
     AdminMainMenu adminMainMenu;
+    OperatorMainMenu operatorMainMenu;
     private void onCreate() {
 
         // setup the menus here
         this.authMenu = new AuthMenu(this.di.userPresenter);
         this.adminMainMenu = new AdminMainMenu(this.di.userPresenter);
+        this.operatorMainMenu = new OperatorMainMenu(this.di.userPresenter);
     }
 
     private void onViewCreated() {
@@ -41,7 +44,7 @@ public class Menwa {
                         // this.adminMenu.showMenu();
                         break;
                     case OPERATOR_MENU:
-                        System.out.println("TODO OPERATOR MENU");
+                        operatorMainMenu.showOperatorMainMenu();
                         // this.operatorMenu.showMenu();
                         break;
 
