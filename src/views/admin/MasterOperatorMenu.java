@@ -57,8 +57,6 @@ public class MasterOperatorMenu {
             }
 
         }
-
-
     }
 
     private void hapusOperator() {

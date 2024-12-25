@@ -128,4 +128,12 @@ public class Laporan {
                 "\ndateRangeStart: " + dateRangeStart +
                 "\ndateRangeEnd: " + dateRangeEnd ;
     }
+
+    public String overview() {
+        return "Laporan Overview\n" +
+                "idLaporan: " + idLaporan +
+                "\ncountTransactionSucceeded: " + countTransactionSucceeded +
+                "\ncountTransactionFailed: " + countTransactionFailed +
+                "\ntanggalLaporan: " + tanggalLaporan;
+    }
 }

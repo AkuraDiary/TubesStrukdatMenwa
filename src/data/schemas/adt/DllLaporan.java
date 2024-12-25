@@ -65,7 +65,7 @@ public class DllLaporan {
     public void display() {
         NodeLaporan current = head;
         while (current != null) {
-            System.out.println(current.getData());
+            System.out.println(current.getData().overview());
             current = current.getNext();
             System.out.println();
         }
