@@ -81,6 +81,7 @@ public class Produk {
                 "\nprodukRentalPrice: " + produkRentalPrice +
                 "\nprodukName: " + produkName +
                 "\nprodukBrand: " + produkBrand +
+                "\nprodukNumber: " + produkNumber +
                 "\nprodukRentalInterval: " + produkRentalInterval;
     }
 }
