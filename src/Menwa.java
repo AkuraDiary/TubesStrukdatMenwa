@@ -41,11 +41,9 @@ public class Menwa {
                         break;
                     case ADMiN_MENU:
                         adminMainMenu.showAdminMainMenu();
-                        // this.adminMenu.showMenu();
                         break;
                     case OPERATOR_MENU:
                         operatorMainMenu.showOperatorMainMenu();
-                        // this.operatorMenu.showMenu();
                         break;
 
                     case EXIT:
