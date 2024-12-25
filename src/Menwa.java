@@ -2,6 +2,7 @@ import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
 import views.admin.AdminMainMenu;
+import views.admin.MasterOperatorMenu;
 import views.auth.AuthMenu;
 import views.operator.OperatorMainMenu;
 
@@ -19,12 +20,17 @@ public class Menwa {
     AuthMenu authMenu;
     AdminMainMenu adminMainMenu;
     OperatorMainMenu operatorMainMenu;
+    MasterOperatorMenu masterOperatorMenu;
+
     private void onCreate() {
 
         // setup the menus here
         this.authMenu = new AuthMenu(this.di.userPresenter);
         this.adminMainMenu = new AdminMainMenu(this.di.userPresenter);
+
         this.operatorMainMenu = new OperatorMainMenu(this.di.userPresenter);
+        this.masterOperatorMenu = new MasterOperatorMenu(this.di.userPresenter);
+
     }
 
     private void onViewCreated() {
@@ -45,6 +51,10 @@ public class Menwa {
                     case OPERATOR_MENU:
                         operatorMainMenu.showOperatorMainMenu();
                         break;
+                    case MASTER_OPERATOR:
+                        masterOperatorMenu.showMasterOperatorMenu();
+                        break;
+
 
                     case EXIT:
 

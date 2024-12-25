@@ -177,6 +177,7 @@ public class DllUser {
         while (current != null) {
             System.out.println(current.getData().toString() + " ");
             current = current.getNext();
+            System.out.println();
         }
         System.out.println();
     }

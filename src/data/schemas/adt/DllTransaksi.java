@@ -86,6 +86,7 @@ public class DllTransaksi {
         while (current != null) {
             System.out.println(current.getData());
             current = current.getNext();
+            System.out.println();
         }
     }
 

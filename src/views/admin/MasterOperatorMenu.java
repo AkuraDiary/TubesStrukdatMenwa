@@ -8,8 +8,7 @@ import util.InputUtilities;
 import views.AppRouter;
 
 import static util.Formatter.invalidChoice;
-import static views.AppRouter.AppRoute.MASTER_CUSTOMER;
-import static views.AppRouter.AppRoute.OPERATOR_MENU;
+import static views.AppRouter.AppRoute.*;
 
 public class MasterOperatorMenu {
 
@@ -23,7 +22,7 @@ public class MasterOperatorMenu {
 
     public void showMasterOperatorMenu() {
         InputUtilities.cls();
-        while (AppRouter.activeRoute == MASTER_CUSTOMER) {
+        while (AppRouter.activeRoute == MASTER_OPERATOR) {
             try {
                 System.out.println("Master Operator Menu");
                 System.out.println("1. List Operator");
@@ -48,7 +47,7 @@ public class MasterOperatorMenu {
                         hapusOperator();
                         break;
                     case "0":
-                        AppRouter.navigateTo(OPERATOR_MENU);
+                        AppRouter.navigateTo(ADMiN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -129,7 +128,7 @@ public class MasterOperatorMenu {
             userPresenter.saveUser(
                     -1,
                     username,
-                    password,
+                    Encryption.hashPassword(password),
                     email,
                     AppEnums.Roles.OPERATOR
             );
