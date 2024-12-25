@@ -30,7 +30,7 @@ public class AdminMainMenu {
             System.out.println("2. Laporan");
             System.out.println("3. Approve Transaksi");
             System.out.println("4. Master Produk");
-            System.out.println("0. Keluar");
+            System.out.println("0. Logout");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
@@ -50,7 +50,7 @@ public class AdminMainMenu {
                         break;
                     case "0":
                         userPresenter.doLogout();
-                        AppRouter.navigateTo(AppRouter.AppRoute.EXIT);
+                        AppRouter.navigateTo(AppRouter.AppRoute.LOGIN);
                         break;
                     default:
                         invalidChoice();
