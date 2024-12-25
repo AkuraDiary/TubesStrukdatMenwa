@@ -35,7 +35,7 @@ public class MasterOperatorMenu {
                 inputUser = InputUtilities.inputReader.readLine();
                 switch (inputUser) {
                     case "1":
-                        tampilLastOperator();
+                        tampilListOperator();
                         break;
                     case "2":
                         tambahOperator();
@@ -89,24 +89,28 @@ public class MasterOperatorMenu {
 
             userPresenter.selectUser(idOperator);
 
-            System.out.println("Edit Data Operator (kosongkan jika tidak ingin merubah)");
-            System.out.print("Masukkan Username Baru Operator : ");
-            String username = InputUtilities.readLine();
-            System.out.print("Masukkan Password Baru Operator : ");
-            String password = InputUtilities.readLine();
-            System.out.print("Masukkan Email Baru Operator  : ");
-            String email = InputUtilities.readLine();
+            if(userPresenter.selectedUser != null){
+                System.out.println("Edit Data Operator (kosongkan jika tidak ingin merubah)");
+                System.out.print("Masukkan Username Baru Operator : ");
+                String username = InputUtilities.readLine();
+                System.out.print("Masukkan Password Baru Operator : ");
+                String password = InputUtilities.readLine();
+                System.out.print("Masukkan Email Baru Operator  : ");
+                String email = InputUtilities.readLine();
 
-            userPresenter.updateUser(
-                    userPresenter.selectedUser.getId(),
-                    (username == null) ? userPresenter.selectedUser.getUsername() : username,
-                    (password == null) ? userPresenter.selectedUser.getPassword() : Encryption.hashPassword(password),
-                    (email == null) ? userPresenter.selectedUser.getEmail() : email,
-                    AppEnums.Roles.OPERATOR
-            );
+                userPresenter.updateUser(
+                        userPresenter.selectedUser.getId(),
+                        (username == null) ? userPresenter.selectedUser.getUsername() : username,
+                        (password == null) ? userPresenter.selectedUser.getPassword() : Encryption.hashPassword(password),
+                        (email == null) ? userPresenter.selectedUser.getEmail() : email,
+                        AppEnums.Roles.OPERATOR
+                );
 
-            System.out.println("Operator Berhasil Diupdate");
-            System.out.println();
+                System.out.println("Operator Berhasil Diupdate");
+                System.out.println();
+            }
+
+
 
         }catch (Exception e) {
             Formatter.formatMessageOutput(e.getMessage());
@@ -141,7 +145,7 @@ public class MasterOperatorMenu {
         }
     }
 
-    private void tampilLastOperator() {
+    private void tampilListOperator() {
         System.out.println();
         System.out.println("List Operator");
         userPresenter.getAllOperator().displau();

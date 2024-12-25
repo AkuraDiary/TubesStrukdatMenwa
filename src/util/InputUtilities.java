@@ -126,4 +126,22 @@ public class InputUtilities {
             return null;
         }
     }
+
+    public static AppEnums.RentalInterval getRentalIntervalFromInput() {
+        try {
+            System.out.print("Masukkan Input [hour, day, week, month] : ");
+            String inputStatus = InputUtilities.inputReader.readLine();
+            return switch (inputStatus.toLowerCase()) {
+                case "hour" -> AppEnums.RentalInterval.Hour;
+                case "day" -> AppEnums.RentalInterval.Day;
+                case "week" -> AppEnums.RentalInterval.Week;
+                case "month" -> AppEnums.RentalInterval.Month;
+                default -> null;
+            };
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+    }
 }
