@@ -21,7 +21,7 @@ public class OperatorMainMenu {
     public void showOperatorMainMenu() {
         InputUtilities.cls();
         while (AppRouter.activeRoute == OPERATOR_MENU) {
-            System.out.println("Main Menu Admin");
+            System.out.println("Main Menu Operator");
             System.out.println("1. Master Customer");
             System.out.println("2. Create Transaksi");
             System.out.println("3. Pembayaran");
