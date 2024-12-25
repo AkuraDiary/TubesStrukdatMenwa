@@ -4,6 +4,7 @@ import data.schemas.adt.DllUser;
 import data.schemas.models.User;
 import repositories.UserRepository;
 import util.AppEnums;
+import util.Encryption;
 
 public class UserPresenter {
     UserRepository userRepository;
@@ -15,7 +16,7 @@ public class UserPresenter {
     }
 
     public User selectedUser = null;
-    public User loggedInUser =null;
+    public User loggedInUser = null;
 
     public void doLogin(String username, String password) {
         userRepository.getUserLogin(username, password);
@@ -33,9 +34,17 @@ public class UserPresenter {
     }
 
     public void updateUser(
-            int id, String username, String password, String email, AppEnums.Roles role
+            int id, String username, String password, String email
     ) {
-        userRepository.updateUser(new User(id, username, password, email, role));
+        userRepository.updateUser(
+                new User(
+                        id,
+                        (username == null) ? selectedUser.getUsername() : username,
+                        (password == null) ? selectedUser.getPassword() : Encryption.hashPassword(password),
+                        (email == null) ? selectedUser.getEmail() : email,
+                        AppEnums.Roles.OPERATOR
+                )
+        );
     }
 
     public void deleteUser(int id) {

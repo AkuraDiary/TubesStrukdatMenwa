@@ -39,7 +39,15 @@ public class ProdukPresenter {
     public void updateProduk(
             int produkId, String produkName, String produkBrand, String produkNumber, int produkRentalPrice, AppEnums.RentalInterval produkRentalInterval
     ) {
-        Produk newProduct = new Produk(produkId, produkName, produkBrand, produkNumber, produkRentalPrice, produkRentalInterval);
+
+        Produk newProduct = new Produk(
+                produkId,
+                produkName == null ?  selectedProduk.getProdukName() : produkName,
+                produkBrand == null ? selectedProduk.getProdukBrand() : produkBrand,
+                produkNumber == null ? selectedProduk.getProdukNumber() : produkNumber,
+                produkRentalPrice == -1 ? selectedProduk.getProdukRentalPrice() : produkRentalPrice,
+                produkRentalInterval == null ? selectedProduk.getProdukRentalInterval() : produkRentalInterval
+        );
         produkRepository.updateProduk(newProduct);
     }
 

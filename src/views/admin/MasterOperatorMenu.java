@@ -90,7 +90,7 @@ public class MasterOperatorMenu {
             userPresenter.selectUser(idOperator);
 
             if(userPresenter.selectedUser != null){
-                System.out.println("Edit Data Operator (kosongkan jika tidak ingin merubah)");
+                System.out.println("Edit Data Operator (kosongkan jika tidak ingin merubah data)");
                 System.out.print("Masukkan Username Baru Operator : ");
                 String username = InputUtilities.readLine();
                 System.out.print("Masukkan Password Baru Operator : ");
@@ -100,10 +100,9 @@ public class MasterOperatorMenu {
 
                 userPresenter.updateUser(
                         userPresenter.selectedUser.getId(),
-                        (username == null) ? userPresenter.selectedUser.getUsername() : username,
-                        (password == null) ? userPresenter.selectedUser.getPassword() : Encryption.hashPassword(password),
-                        (email == null) ? userPresenter.selectedUser.getEmail() : email,
-                        AppEnums.Roles.OPERATOR
+                        username,
+                        password,
+                        email
                 );
 
                 System.out.println("Operator Berhasil Diupdate");

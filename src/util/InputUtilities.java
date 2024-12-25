@@ -25,7 +25,7 @@ public class InputUtilities {
             return Integer.parseInt(inputReader.readLine());
         } catch (NumberFormatException | IOException e) {
             System.err.println("Input tidak valid. masukkan Integer");
-            return readInt(); // rekursif
+            return -1;//readInt(); // rekursif
         }
     }
 

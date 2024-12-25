@@ -90,7 +90,7 @@ public class MasterProdukMenu {
             produkPresenter.selectProduk(idProduk);
 
             if (produkPresenter.selectedProduk != null) {
-                System.out.println("Edit Data Produk (kosongkan jika tidak ingin merubah)");
+                System.out.println("Edit Data Produk (kosongkan jika tidak ingin merubah data)");
                 System.out.print("Masukkan Nama Produk : ");
                 String produkName = InputUtilities.readLine();
                 System.out.print("Masukkan Brand Produk : ");
@@ -103,7 +103,7 @@ public class MasterProdukMenu {
 
                 produkPresenter.updateProduk(
                         produkPresenter.selectedProduk.getProdukId(),
-                        produkName,
+                        produkName ,
                         produkBrand,
                         produkNumber,
                         produkRentalPrice,
