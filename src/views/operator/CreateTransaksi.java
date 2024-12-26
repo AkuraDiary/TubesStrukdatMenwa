@@ -63,8 +63,7 @@ public class CreateTransaksi {
     }
 
     private void doCreateTransaksi() {
-        System.out.println("Tambah Transaksi");
-        System.out.println();
+        // habis jumatan
     }
 
     private final ProdukPresenter produkPresenter;
