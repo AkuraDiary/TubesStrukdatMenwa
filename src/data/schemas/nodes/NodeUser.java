@@ -1,3 +1,6 @@
+// redirect to '../.adt/DllCustomer.java'
+// redirect to '../.adt/DllUser.java'
+
 package data.schemas.nodes;
 
 import data.schemas.models.User;

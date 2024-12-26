@@ -1,6 +1,10 @@
+// redirect to '../.adt/DllTransaksi.java'
+// redirect to '../.nodes/NodeTransaksi.java'
+
 package data.schemas.models;
 
 import data.schemas.adt.DllProduk;
+
 import util.AppEnums;
 import util.Formatter;
 

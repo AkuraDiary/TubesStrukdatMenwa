@@ -1,3 +1,8 @@
+// redirect to '../.adt/DllUser.java'
+// redirect to '../.nodes/NodeTransaksi.java'
+// redirect to '../.nodes/NodeUser.java'
+
+
 package data.schemas.models;
 
 import util.AppEnums;

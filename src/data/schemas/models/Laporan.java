@@ -1,3 +1,6 @@
+// redirect to '../.adt/DllLaporan.java'
+// redirect to '../.nodes/NodeLaporan.java'
+
 package data.schemas.models;
 
 import data.schemas.adt.DllTransaksi;

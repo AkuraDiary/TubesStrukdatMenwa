@@ -6,12 +6,14 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class InputUtilities {
 
     public static final BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static String readLine(){
+    public static String readLine() {
         try {
             return inputReader.readLine();
         } catch (IOException e) {
@@ -20,12 +22,12 @@ public class InputUtilities {
         }
     }
 
-    public static int readInt(){
+    public static int readInt() {
         try {
             return Integer.parseInt(inputReader.readLine());
         } catch (NumberFormatException | IOException e) {
             System.err.println("Input tidak valid. masukkan Integer");
-            return -1;//readInt(); // rekursif
+            return -1;// readInt(); // rekursif
         }
     }
 
@@ -53,7 +55,7 @@ public class InputUtilities {
         }
     }
 
-    public static void pressEnter(){
+    public static void pressEnter() {
         System.out.println();
         System.out.print("Press ENTER to continue");
         try {
@@ -63,52 +65,52 @@ public class InputUtilities {
         }
     }
 
-//    public static AppEnums.JenisKamar getJenisKamarFromInput() {
-//        try {
-//            String inputJenis = InputUtilities.input.readLine();
-//            return switch (inputJenis.toLowerCase()) {
-//                case "single" -> AppEnums.JenisKamar.SINGLE;
-//                case "double" -> AppEnums.JenisKamar.DOUBLE;
-//                case "family" -> AppEnums.JenisKamar.FAMILY;
-//                case "vip" -> AppEnums.JenisKamar.VIP;
-//                case "business" -> AppEnums.JenisKamar.BUSINESS;
-//                default -> null;
-//            };
-//        } catch (IOException e) {
-//            System.err.println(e.getMessage());
-//            return null;
-//        }
-//    }
-//
-//    public static AppEnums.StatusKamar getStatusKamarFromInput() {
-//        try {
-//            String inputStatus = InputUtilities.input.readLine();
-//            return switch (inputStatus.toLowerCase()) {
-//                case "available" -> AppEnums.StatusKamar.AVAILABLE;
-//                case "booked" -> AppEnums.StatusKamar.BOOKED;
-//                case "cleaning" -> AppEnums.StatusKamar.CLEANING;
-//                case "occupied" -> AppEnums.StatusKamar.OCCUPIED;
-//                default -> null;
-//            };
-//        } catch (IOException e) {
-//            System.err.println(e.getMessage());
-//            return null;
-//        }
-//    }
-//
-//    public static AppEnums.Pembayaran getMetodeBayarFromInput(){
-//        try {
-//            String inputStatus = InputUtilities.input.readLine();
-//            return switch (inputStatus.toLowerCase()) {
-//                case "cash" -> AppEnums.Pembayaran.CASH;
-//                case "bank" ->AppEnums.Pembayaran.BANK;
-//                default -> null;
-//            };
-//        } catch (IOException e) {
-//            System.err.println(e.getMessage());
-//            return null;
-//        }
-//    }
+    // public static AppEnums.JenisKamar getJenisKamarFromInput() {
+    // try {
+    // String inputJenis = InputUtilities.input.readLine();
+    // return switch (inputJenis.toLowerCase()) {
+    // case "single" -> AppEnums.JenisKamar.SINGLE;
+    // case "double" -> AppEnums.JenisKamar.DOUBLE;
+    // case "family" -> AppEnums.JenisKamar.FAMILY;
+    // case "vip" -> AppEnums.JenisKamar.VIP;
+    // case "business" -> AppEnums.JenisKamar.BUSINESS;
+    // default -> null;
+    // };
+    // } catch (IOException e) {
+    // System.err.println(e.getMessage());
+    // return null;
+    // }
+    // }
+    //
+    // public static AppEnums.StatusKamar getStatusKamarFromInput() {
+    // try {
+    // String inputStatus = InputUtilities.input.readLine();
+    // return switch (inputStatus.toLowerCase()) {
+    // case "available" -> AppEnums.StatusKamar.AVAILABLE;
+    // case "booked" -> AppEnums.StatusKamar.BOOKED;
+    // case "cleaning" -> AppEnums.StatusKamar.CLEANING;
+    // case "occupied" -> AppEnums.StatusKamar.OCCUPIED;
+    // default -> null;
+    // };
+    // } catch (IOException e) {
+    // System.err.println(e.getMessage());
+    // return null;
+    // }
+    // }
+    //
+    // public static AppEnums.Pembayaran getMetodeBayarFromInput(){
+    // try {
+    // String inputStatus = InputUtilities.input.readLine();
+    // return switch (inputStatus.toLowerCase()) {
+    // case "cash" -> AppEnums.Pembayaran.CASH;
+    // case "bank" ->AppEnums.Pembayaran.BANK;
+    // default -> null;
+    // };
+    // } catch (IOException e) {
+    // System.err.println(e.getMessage());
+    // return null;
+    // }
+    // }
     public static Date getDateFromInput() {
         try {
             String inputDate = InputUtilities.inputReader.readLine();
@@ -124,6 +126,24 @@ public class InputUtilities {
             return null;
         } catch (ParseException e) {
             return null;
+        }
+    }
+
+    public static LocalDateTime getDateTimeFromInput() {
+        try {
+            String inputDate = InputUtilities.inputReader.readLine();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+            // String inputString = "20-11-2024 13:30:00";
+            return LocalDateTime.parse(inputDate, formatter);
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        } catch (Exception e) {
+            return null;
+            // TODO: handle exception
         }
     }
 

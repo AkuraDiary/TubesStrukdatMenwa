@@ -1,3 +1,6 @@
+// redirect to '../.models/Transaksi.java'
+// redirect to '../.sources/ProductDataSources.java'
+
 package data.schemas.adt;
 
 import data.schemas.models.Produk;

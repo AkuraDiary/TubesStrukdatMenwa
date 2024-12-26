@@ -18,6 +18,7 @@ public class CustomerPresenter {
         customerRepository.addCustomer(newData);
     }
 
+
     public void removeCustomer(int id) {
         customerRepository.removeCustomer(id);
     }

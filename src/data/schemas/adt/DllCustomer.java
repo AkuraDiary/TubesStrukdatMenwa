@@ -1,3 +1,5 @@
+// redirect to '../.sources/CustomerDataSources.java'
+
 package data.schemas.adt;
 
 import data.schemas.models.Customer;

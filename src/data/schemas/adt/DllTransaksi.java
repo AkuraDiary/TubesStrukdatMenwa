@@ -1,3 +1,6 @@
+// redirect to '../.models/Laporan.java'
+// redirect to '../.sources/TransaksiDataSource.java'
+
 package data.schemas.adt;
 
 import data.schemas.models.Transaksi;

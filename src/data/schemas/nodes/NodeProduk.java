@@ -1,3 +1,5 @@
+// redirect to '../.adt/DllProduk.java'
+
 package data.schemas.nodes;
 
 import data.schemas.models.Produk;

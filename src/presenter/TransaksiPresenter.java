@@ -11,7 +11,7 @@ import repositories.TransaksiRepository;
 import repositories.UserRepository;
 import util.AppEnums;
 
-import java.util.Date;
+import java.util.;
 
 public class TransaksiPresenter {
 
@@ -32,8 +32,8 @@ public class TransaksiPresenter {
 
     public void cookTransaksi(
             int rental_duration,
-            Date rental_start,
-            Date rental_end,
+            DateTime rental_start,
+            DateTime rental_end,
             int idCustomer,
             DllProduk listProduk
     ) {

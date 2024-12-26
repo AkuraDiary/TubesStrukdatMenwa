@@ -1,6 +1,8 @@
 package views;
 
 public class AppRouter {
+
+
     public static void navigateTo(AppRoute target) {
         activeRoute = target;
     }

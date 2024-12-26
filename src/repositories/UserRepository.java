@@ -7,7 +7,7 @@ import data.sources.UserDataSource;
 import util.AppEnums;
 import util.Encryption;
 
-public class UserRepository {
+public class   UserRepository {
     UserDataSource userDataSource;
     public User selectedUser = null;
     public DllUser listKaryawan = new DllUser();

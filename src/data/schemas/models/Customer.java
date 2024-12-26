@@ -1,3 +1,9 @@
+// redirect to '../.adt/DllCustomer.java'
+// redirect to '../.nodes/NodeCustomer.java'
+// redirect to '../.nodes/NodeTransaksi.java'
+// redirect to '../.sources/CustomerDataSources.java'
+
+
 package data.schemas.models;
 
 public class Customer {

@@ -1,3 +1,8 @@
+// redirect to '../.adt/DllProduk.java'
+// redirect to '../.nodes/NodeProduk.java'
+// redirect to '../.sources/ProductDataSources.java'
+
+
 package data.schemas.models;
 
 import util.AppEnums;
