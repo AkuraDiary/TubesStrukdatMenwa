@@ -117,4 +117,8 @@ public class TransaksiRepository {
         transaksiDataSource.transaksiList.deleteById(idTransaksi);
         transaksiDataSource.transaksiList.insertSortedByStartDate(transaksi);
     }
+
+    public DllTransaksi getAllTransaksi(){
+        return transaksiDataSource.transaksiList;
+    }
 }

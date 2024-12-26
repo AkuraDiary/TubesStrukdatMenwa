@@ -1,13 +1,20 @@
 package views.operator;
 
 import static util.Formatter.invalidChoice;
+import static views.AppRouter.AppRoute.OPERATOR_MENU;
 
+import presenter.TransaksiPresenter;
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
 
 public class PengembalianMenu {
 
+    private final TransaksiPresenter transaksiPresenter;
+
+    public PengembalianMenu(TransaksiPresenter transaksiPresenter){
+        this.transaksiPresenter = transaksiPresenter;
+    }
     public void showPengembalianMenu() {
         try {
             while (AppRouter.activeRoute == AppRouter.AppRoute.PEMBAYARAN) {
@@ -43,8 +50,12 @@ public class PengembalianMenu {
     }
 
     private void showAllTransaksi() {
+        System.out.println();
+        System.out.println("List Transaksi");
+        transaksiPresenter.getListTransaksiRunning().display();
+        System.out.println();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
+        // throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
     }
 
     private void pengembalian() {

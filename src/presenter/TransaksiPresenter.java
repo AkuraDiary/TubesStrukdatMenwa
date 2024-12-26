@@ -79,6 +79,10 @@ public class TransaksiPresenter {
         }
     }
 
+    public DllTransaksi getListTransaksiRunning(){
+        return transaksiRepository.getAllTransaksi();
+    }
+
     public void getListTransaksiFiltered(
             Date tanggalTransaksi,
             AppEnums.StatusTransaksi statusTransaksi,

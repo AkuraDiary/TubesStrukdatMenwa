@@ -1,6 +1,7 @@
 package views.operator;
 
 import static util.Formatter.invalidChoice;
+import static views.AppRouter.AppRoute.OPERATOR_MENU;
 
 import presenter.TransaksiPresenter;
 import util.Formatter;
@@ -57,7 +58,11 @@ public class PembayaranMenu {
     }
 
     private void showAllTransaksi() {
+        System.out.println();
+        System.out.println("List Transaksi");
+        transaksiPresenter.getListTransaksiRunning().display();
+        System.out.println();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
+        // throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
     }
 }
