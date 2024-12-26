@@ -11,6 +11,8 @@ import util.Formatter;
 import java.time.Month;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transaksi {
 
@@ -22,7 +24,7 @@ public class Transaksi {
     long total_price;
     User pic;
     Customer customer;
-    Date rental_start, rental_end;
+    LocalDateTime rental_start, rental_end;
     AppEnums.StatusTransaksi rental_status;
     AppEnums.RentalInterval rental_interval;
 
@@ -90,19 +92,19 @@ public class Transaksi {
         this.total_price = total_price;
     }
 
-    public Date getRental_start() {
+    public LocalDateTime getRental_start() {
         return rental_start;
     }
 
-    public void setRental_start(Date rental_start) {
+    public void setRental_start(LocalDateTime rental_start) {
         this.rental_start = rental_start;
     }
 
-    public Date getRental_end() {
+    public LocalDateTime getRental_end() {
         return rental_end;
     }
 
-    public void setRental_end(Date rental_end) {
+    public void setRental_end(LocalDateTime rental_end) {
         this.rental_end = rental_end;
     }
 
@@ -125,8 +127,8 @@ public class Transaksi {
     public Transaksi(
             int id_transaksi,
             int rental_duration,
-            Date rental_start,
-            Date rental_end,
+            LocalDateTime rental_start,
+            LocalDateTime rental_end,
             AppEnums.StatusTransaksi rental_status,
             AppEnums.RentalInterval rental_interval,
             User pic, Customer customer

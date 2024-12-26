@@ -11,7 +11,9 @@ import repositories.TransaksiRepository;
 import repositories.UserRepository;
 import util.AppEnums;
 
-import java.util.;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class TransaksiPresenter {
 
@@ -20,7 +22,8 @@ public class TransaksiPresenter {
     TransaksiRepository transaksiRepository;
     ProdukRepository produkRepository;
 
-    public TransaksiPresenter(UserRepository userRepository, TransaksiRepository transaksiRepository, ProdukRepository produkRepository, CustomerRepository customerRepository) {
+    public TransaksiPresenter(UserRepository userRepository, TransaksiRepository transaksiRepository,
+            ProdukRepository produkRepository, CustomerRepository customerRepository) {
         this.userRepository = userRepository;
         this.transaksiRepository = transaksiRepository;
         this.produkRepository = produkRepository;
@@ -32,11 +35,10 @@ public class TransaksiPresenter {
 
     public void cookTransaksi(
             int rental_duration,
-            DateTime rental_start,
-            DateTime rental_end,
+            LocalDateTime rental_start,
+            LocalDateTime rental_end,
             int idCustomer,
-            DllProduk listProduk
-    ) {
+            DllProduk listProduk) {
 
         Customer customer = customerRepository.getAllCustomers().searchById(idCustomer);
         Transaksi transaksiData = new Transaksi(
@@ -47,8 +49,7 @@ public class TransaksiPresenter {
                 AppEnums.StatusTransaksi.Pending,
                 listProduk.getHead().getData().getProdukRentalInterval(),
                 userRepository.getLoggedInUser(),
-                customer
-        );
+                customer);
         transaksiData.setListProduk(listProduk);
         updateRentProductStatus(listProduk, AppEnums.ProdukStatus.Rented);
         transaksiRepository.addTransaksi(transaksiData);
@@ -72,8 +73,9 @@ public class TransaksiPresenter {
         transaksiRepository.selectTransaksi(idTransaksi);
         transaksiRepository.updateTransaksi(idTransaksi, transaksi);
 
-        if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
-          updateRentProductStatus(transaksi.getListProduk(), AppEnums.ProdukStatus.Available);
+        if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected
+                || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
+            updateRentProductStatus(transaksi.getListProduk(), AppEnums.ProdukStatus.Available);
         }
     }
 
@@ -82,8 +84,7 @@ public class TransaksiPresenter {
             AppEnums.StatusTransaksi statusTransaksi,
             int idCustomer,
             int idUser,
-            AppEnums.RentalInterval rentalInterval
-    ) {
+            AppEnums.RentalInterval rentalInterval) {
         if (tanggalTransaksi != null) {
             transaksiRepository.selectTransaksisByDate(tanggalTransaksi);
         } else if (statusTransaksi != null) {
@@ -97,6 +98,5 @@ public class TransaksiPresenter {
         }
         listSelectedTransaksi = transaksiRepository.selectedTransaksiList;
     }
-
 
 }
