@@ -2,11 +2,15 @@ package views.operator;
 
 import static util.Formatter.invalidChoice;
 import static views.AppRouter.AppRoute.OPERATOR_MENU;
+import static views.AppRouter.AppRoute.PEMBAYARAN;
+import static views.AppRouter.AppRoute.PENGEMBALIAN;
 
 import presenter.TransaksiPresenter;
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
+import static util.AppEnums.StatusTransaksi.Pending;;
+
 
 public class PengembalianMenu {
 
@@ -17,7 +21,7 @@ public class PengembalianMenu {
     }
     public void showPengembalianMenu() {
         try {
-            while (AppRouter.activeRoute == AppRouter.AppRoute.PEMBAYARAN) {
+            while (AppRouter.activeRoute == PENGEMBALIAN) {
                 System.out.println("Menu Pembayaran");
                 System.out.println("1.Tampilkan Transaksi");
                 System.out.println("2. Pengembalian Barang");
@@ -52,7 +56,9 @@ public class PengembalianMenu {
     private void showAllTransaksi() {
         System.out.println();
         System.out.println("List Transaksi");
-        transaksiPresenter.getListTransaksiRunning().display();
+        transaksiPresenter.getListTransaksiFiltered(null, Pending, -1, -1, null);
+       
+        // transaksiPresenter.getListTransaksiRunning().display();
         System.out.println();
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
@@ -66,6 +72,8 @@ public class PengembalianMenu {
 
        if (transaksiPresenter.selectedTransaksi!=null) {
           transaksiPresenter.updateTransaksi(idTransaksi, transaksiPresenter.selectedTransaksi);
+       }else{
+        System.out.println("Id Transaksi Tidak ditemukan");
        }
         // // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'pengembalian'");

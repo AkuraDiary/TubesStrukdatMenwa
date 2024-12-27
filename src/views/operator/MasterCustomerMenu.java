@@ -62,7 +62,7 @@ public class MasterCustomerMenu {
     private void hapusCustomer(){
         try {
             System.out.println("Pilih Customer untuk dihapus");
-            System.out.print("Masukkan ID Customer untuk dihapus");
+            System.out.print("Masukkan ID Customer untuk dihapus : ");
             int custID = InputUtilities.readInt();
             custPresenter.selectCustomer(custID);
             System.out.print("[Konfirmasi] apakah anda yakin untuk menghapus data ini? [y/n]: ");
@@ -91,7 +91,7 @@ public class MasterCustomerMenu {
                 System.out.println("Tambah Customer");
                 System.out.print("Masukkan Nama Customer : ");
                 String custName = InputUtilities.readLine();
-                System.out.print("Masukkan Email Custoemer");
+                System.out.print("Masukkan Email Custoemer : ");
                 String custEmail = InputUtilities.readLine();
                 System.out.print("Masukkan Nomor identitas : ");
                 String custNumIdent = InputUtilities.readLine();
