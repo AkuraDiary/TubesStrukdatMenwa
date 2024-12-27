@@ -112,7 +112,7 @@ public class MasterCustomerMenu {
         }
     }
 
-     private void tambahCustomer(){
+     private void   tambahCustomer(){
         try {
             InputUtilities.cls();
             System.out.println("Tambah Customer");

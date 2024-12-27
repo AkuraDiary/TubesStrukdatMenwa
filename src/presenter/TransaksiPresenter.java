@@ -58,13 +58,13 @@ public class TransaksiPresenter {
     }
 
     private LocalDateTime calcuateRentalEnd(LocalDateTime rentalStart, int rentalDuration, AppEnums.RentalInterval rentalInterval) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return switch (rentalInterval) {
             case Hour -> rentalStart.plusHours(rentalDuration);
             case Day -> rentalStart.plusDays(rentalDuration);
             case Week -> rentalStart.plusWeeks(rentalDuration);
             case Month -> rentalStart.plusMonths(rentalDuration);
-            case null, default -> throw new IllegalStateException("Unexpected value: " + rentalInterval);
+            // case null -> throw new IllegalStateException("Unexpected value: " + rentalInterval);
         };
     }
 
@@ -100,7 +100,7 @@ public class TransaksiPresenter {
             Date tanggalTransaksi,
             AppEnums.StatusTransaksi statusTransaksi,
             int idCustomer,
-            int idUser,
+            int idUser, 
             AppEnums.RentalInterval rentalInterval) {
         if (tanggalTransaksi != null) {
             transaksiRepository.selectTransaksisByDate(tanggalTransaksi);

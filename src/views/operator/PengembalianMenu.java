@@ -59,8 +59,16 @@ public class PengembalianMenu {
     }
 
     private void pengembalian() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pengembalian'");
+       System.out.println();
+       System.out.print("Masukkin Id Transaksi : ");
+       int idTransaksi = InputUtilities.readInt();
+       transaksiPresenter.selectTransaksi(idTransaksi);
+
+       if (transaksiPresenter.selectedTransaksi!=null) {
+          transaksiPresenter.updateTransaksi(idTransaksi, transaksiPresenter.selectedTransaksi);
+       }
+        // // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'pengembalian'");
     }
 
 }

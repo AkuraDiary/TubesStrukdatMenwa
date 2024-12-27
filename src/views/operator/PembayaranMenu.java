@@ -8,6 +8,7 @@ import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
 import views.AppRouter.AppRoute;
+import static util.AppEnums.StatusTransaksi.Running;
 
 public class PembayaranMenu {
 
@@ -16,7 +17,6 @@ public class PembayaranMenu {
     public PembayaranMenu(TransaksiPresenter transaksiPresenter) {
         this.transaksiPresenter = transaksiPresenter;
     }
-
 
     public void showPembayaranMenu() {
         try {
@@ -53,16 +53,26 @@ public class PembayaranMenu {
     }
 
     private void pembayaran() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pembayaran'");
+        System.out.println();
+        System.out.print("Masukkan Id Transaksi : ");
+        int idTransaksi = InputUtilities.readInt();
+        transaksiPresenter.selectTransaksi(idTransaksi);
+
+        if (transaksiPresenter.selectedTransaksi != null) {
+            transaksiPresenter.updateTransaksi(idTransaksi, transaksiPresenter.selectedTransaksi);
+        }else{
+            System.out.println("id tidak ditemukan");
+        }
     }
 
     private void showAllTransaksi() {
         System.out.println();
         System.out.println("List Transaksi");
-        transaksiPresenter.getListTransaksiRunning().display();
+        // transaksiPresenter.getListTransaksiRunning().display();
+        transaksiPresenter.getListTransaksiFiltered(null, Running, -1, -1, null);
         System.out.println();
         // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'showAllTransaksi'");
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'showAllTransaksi'");
     }
 }
