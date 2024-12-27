@@ -7,6 +7,7 @@ import repositories.LaporanRepository;
 import repositories.TransaksiRepository;
 import repositories.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class LaporanPresenter {
@@ -24,8 +25,8 @@ public class LaporanPresenter {
     }
 
     public void cookLaporan(
-            Date tanggalAwal,
-            Date tanggalAkhir
+            LocalDateTime tanggalAwal,
+            LocalDateTime tanggalAkhir
     ) {
 
         DllTransaksi listTransaksi = transaksiRepository.selectTransaksisByDate(tanggalAwal, tanggalAkhir);
