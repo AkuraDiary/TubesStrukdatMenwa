@@ -64,10 +64,7 @@ public class Transaksi {
     }
 
     public int getRental_fine() {
-
-        // calculate rental fine based on rental due
-        // fine is calculated by this formula: fine = due * 10% of total price
-        this.rental_fine = (int) (rental_due * 0.1 * total_price);
+        calcluatedue();
         return rental_fine;
     }
 
@@ -75,7 +72,7 @@ public class Transaksi {
         this.rental_fine = rental_fine;
     }
 
-    public int getRental_due() {
+    private void calcluatedue(){
         // calculate rental due based on rental duration, current date and rental start date
         LocalDateTime now = LocalDateTime.now();
         boolean isDue = switch (rental_interval) {
@@ -97,7 +94,12 @@ public class Transaksi {
         } else {
             this.rental_due = 0;
         }
-
+        // calculate rental fine based on rental due
+        // fine is calculated by this formula: fine = due * 10% of total price
+        this.rental_fine = (int) (rental_due * 0.1 * total_price);
+    }
+    public int getRental_due() {
+        calcluatedue();
         return rental_due;
     }
 
@@ -132,6 +134,7 @@ public class Transaksi {
     }
 
     public AppEnums.StatusTransaksi getRental_status() {
+        calcluatedue();
         return rental_status;
     }
 
