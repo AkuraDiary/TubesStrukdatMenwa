@@ -10,7 +10,7 @@ import views.AppRouter;
 import static util.Formatter.invalidChoice;
 import static views.AppRouter.AppRoute.*;
 
-public class MasterOperatorMenu {
+public class     {
 
     private final UserPresenter userPresenter;
 

@@ -3,6 +3,11 @@ package views.operator;
 import static util.Formatter.invalidChoice;
 import static views.AppRouter.AppRoute.OPERATOR_MENU;
 
+import java.time.LocalDateTime;
+
+import javax.swing.plaf.basic.BasicBorders.MenuBarBorder;
+
+import data.schemas.adt.DllProduk;
 import presenter.CustomerPresenter;
 import presenter.ProdukPresenter;
 import presenter.TransaksiPresenter;
@@ -26,9 +31,10 @@ public class CreateTransaksi {
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
             try {
                 System.out.println("Create Transaksi Menu");
-                System.out.println("1. List Id Customer");
-                System.out.println("2. List Id Product");
-                System.out.println("3. Create Transaksi");
+                System.out.println("1. List Customer");
+                System.out.println("2. List Product");
+                System.out.println("3. List Product");
+                System.out.println("4. Create Transaksi");
                 System.out.println("0. Kembali");
                 System.out.println();
                 System.out.print("Masukkan Pilihan : ");
@@ -44,6 +50,10 @@ public class CreateTransaksi {
                         break;
 
                     case "3":
+                        keranjang();
+                        break;
+
+                    case "4":
                         doCreateTransaksi();
                         break;
 
@@ -62,8 +72,39 @@ public class CreateTransaksi {
         }
     }
 
+    DllProduk keranjangProduk ;
+    private void keranjang(){
+        int cek =1;
+        while (cek!=0) {
+            System.out.println("Menu Keranjang");
+            System.out.println("Masukkan Id product : ");
+            int idProduk= InputUtilities.readInt();
+            produkPresenter.selectProduk(idProduk);
+
+            keranjangProduk.insertSorted(produkPresenter.selectedProduk);
+
+            System.out.println("1. Masukkan Product lagi");
+            System.out.println("0. Kembali");
+            System.out.print("Pilihan : ");
+            String inputUser = InputUtilities.readLine();
+            if (inputUser.equals("0")) {
+                cek=0;
+            }
+
+        }
+    }
     private void doCreateTransaksi() {
         // habis jumatan
+        System.out.print("Masukkan Id Customer : ");
+        String idUser = InputUtilities.readLine();
+        System.out.println("Mulai Rental kapan : (dd-MM-yyyy HH:mm:ss)");
+        LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
+        // System.out.println("Akhir Rental kapan : (dd-MM-yyyy HH:mm:ss)");
+        // LocalDateTime entRent = InputUtilities.getDateTimeFromInput();
+
+        System.out.println("Berapa lama anda merental?");
+        
+
     }
 
     private final ProdukPresenter produkPresenter;
