@@ -15,11 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Transaksi {
-
-    // TODO MOVE THESE TO NODE
-    //    List<Produk> Products;
-    //    User pic;
-    //    Customer customer;
     int id_transaksi, rental_duration, rental_fine, rental_due;
     long total_price;
     User pic;
@@ -43,7 +38,7 @@ public class Transaksi {
         return "Transaksi\n" +
                 "id_transaksi: " + id_transaksi +
                 "\nrental_duration: " + rental_duration +
-                "\nrental_fine: " + Formatter.formatRupiah(rental_fine)  +
+                "\nrental_fine: " + Formatter.formatRupiah(rental_fine) +
                 "\nrental_due: " + rental_due +
                 "\ntotal_price: " + Formatter.formatRupiah(total_price) +
                 "\nrental_start: " + rental_start +
@@ -69,6 +64,7 @@ public class Transaksi {
     }
 
     public int getRental_fine() {
+        calcluatedue();
         return rental_fine;
     }
 
@@ -76,13 +72,42 @@ public class Transaksi {
         this.rental_fine = rental_fine;
     }
 
+    private void calcluatedue(){
+        // calculate rental due based on rental duration, current date and rental start date
+        LocalDateTime now = LocalDateTime.now();
+        boolean isDue = switch (rental_interval) {
+            case Day -> now.getDayOfMonth() > rental_start.getDayOfMonth();
+            case Week -> now.getDayOfMonth() > rental_start.getDayOfMonth() + 7;
+            case Month -> now.getMonthValue() > rental_start.getMonthValue();
+            case Hour -> now.getHour() > rental_start.getHour();
+        };// adjust within the interval
+        if (isDue) {
+            rental_status = AppEnums.StatusTransaksi.Due;
+            this.rental_due =
+                    switch (rental_interval) {
+                        case Day -> now.getDayOfMonth() - rental_start.getDayOfMonth();
+                        case Week -> (now.getDayOfMonth() - rental_start.getDayOfMonth()) / 7;
+                        case Month -> now.getMonthValue() - rental_start.getMonthValue();
+                        case Hour -> now.getHour() - rental_start.getHour();
+
+                    };
+        } else {
+            this.rental_due = 0;
+        }
+        // calculate rental fine based on rental due
+        // fine is calculated by this formula: fine = due * 10% of total price
+        this.rental_fine = (int) (rental_due * 0.1 * total_price);
+    }
     public int getRental_due() {
+        calcluatedue();
         return rental_due;
     }
 
     public void setRental_due(int rental_due) {
         this.rental_due = rental_due;
     }
+
+
 
     public long getTotal_price() {
         return total_price;
@@ -109,6 +134,7 @@ public class Transaksi {
     }
 
     public AppEnums.StatusTransaksi getRental_status() {
+        calcluatedue();
         return rental_status;
     }
 
