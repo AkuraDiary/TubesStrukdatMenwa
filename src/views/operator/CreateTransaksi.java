@@ -33,7 +33,7 @@ public class CreateTransaksi {
                 System.out.println("Create Transaksi Menu");
                 System.out.println("1. List Customer");
                 System.out.println("2. List Product");
-                System.out.println("3. List Product");
+                System.out.println("3. Masukkan Barang Ke Keranjang");
                 System.out.println("4. Create Transaksi");
                 System.out.println("0. Kembali");
                 System.out.println();
