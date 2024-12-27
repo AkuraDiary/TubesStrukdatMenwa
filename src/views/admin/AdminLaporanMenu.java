@@ -5,6 +5,7 @@ import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static util.Formatter.invalidChoice;
@@ -60,9 +61,9 @@ public class AdminLaporanMenu {
         try {
             System.out.println();
             System.out.println("Buat Laporan Baru");
-            Date dateRangeStart = InputUtilities.getDateFromInput();
+            LocalDateTime dateRangeStart = InputUtilities.getDateTimeFromInput();
             System.out.print("Masukkan Tanggal Akhir Rentang : ");
-            Date dateRangeEnd = InputUtilities.getDateFromInput();
+            LocalDateTime dateRangeEnd = InputUtilities.getDateTimeFromInput();
             laporanPresenter.cookLaporan(dateRangeStart, dateRangeEnd);
             System.out.println("Laporan Berhasil Dibuat");
             System.out.println();

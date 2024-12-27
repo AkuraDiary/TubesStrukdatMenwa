@@ -7,6 +7,7 @@ import data.schemas.adt.DllTransaksi;
 import data.schemas.nodes.NodeTransaksi;
 import util.AppEnums;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,16 +15,16 @@ public class Laporan {
     int idLaporan, countTransactionSucceeded, countTransactionFailed, countTransaksiPending;
     Date tanggalLaporan;
     Long totalRevenue;
-    Date dateRangeStart;
-    Date dateRangeEnd;
+    LocalDateTime dateRangeStart;
+    LocalDateTime dateRangeEnd;
     DllTransaksi listTransaksi;
     DllTransaksi listTransaksiSucceeded;
 
     public Laporan(
             int idLaporan,
             Date tanggalLaporan,
-            Date dateRangeStart,
-            Date dateRangeEnd,
+            LocalDateTime dateRangeStart,
+            LocalDateTime dateRangeEnd,
             DllTransaksi listTransaksi
     ) {
         this.idLaporan = idLaporan;
@@ -110,12 +111,12 @@ public class Laporan {
     }
 
 
-    public Date getDateRangeStart() {
+    public LocalDateTime getDateRangeStart() {
         return dateRangeStart;
     }
 
 
-    public Date getDateRangeEnd() {
+    public LocalDateTime getDateRangeEnd() {
         return dateRangeEnd;
     }
 
