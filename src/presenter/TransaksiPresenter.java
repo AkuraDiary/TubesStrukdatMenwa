@@ -36,10 +36,12 @@ public class TransaksiPresenter {
     public void cookTransaksi(
             int rental_duration,
             LocalDateTime rental_start,
-            LocalDateTime rental_end,
             int idCustomer,
-            DllProduk listProduk) {
+            DllProduk listProduk
+    ) {
 
+        AppEnums.RentalInterval rentalInterval = listProduk.getHead().getData().getProdukRentalInterval();
+        LocalDateTime rental_end = calcuateRentalEnd(rental_start, rental_duration, rentalInterval);
         Customer customer = customerRepository.getAllCustomers().searchById(idCustomer);
         Transaksi transaksiData = new Transaksi(
                 -1,
@@ -47,12 +49,23 @@ public class TransaksiPresenter {
                 rental_start,
                 rental_end,
                 AppEnums.StatusTransaksi.Pending,
-                listProduk.getHead().getData().getProdukRentalInterval(),
+                rentalInterval,
                 userRepository.getLoggedInUser(),
                 customer);
         transaksiData.setListProduk(listProduk);
         updateRentProductStatus(listProduk, AppEnums.ProdukStatus.Rented);
         transaksiRepository.addTransaksi(transaksiData);
+    }
+
+    private LocalDateTime calcuateRentalEnd(LocalDateTime rentalStart, int rentalDuration, AppEnums.RentalInterval rentalInterval) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return switch (rentalInterval) {
+            case Hour -> rentalStart.plusHours(rentalDuration);
+            case Day -> rentalStart.plusDays(rentalDuration);
+            case Week -> rentalStart.plusWeeks(rentalDuration);
+            case Month -> rentalStart.plusMonths(rentalDuration);
+            case null, default -> throw new IllegalStateException("Unexpected value: " + rentalInterval);
+        };
     }
 
     public void selectTransaksi(int id) {

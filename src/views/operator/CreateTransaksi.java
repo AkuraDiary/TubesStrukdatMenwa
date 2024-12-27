@@ -96,13 +96,18 @@ public class CreateTransaksi {
     private void doCreateTransaksi() {
         // habis jumatan
         System.out.print("Masukkan Id Customer : ");
-        String idUser = InputUtilities.readLine();
+        int idUser = InputUtilities.readInt();
         System.out.println("Mulai Rental kapan : (dd-MM-yyyy HH:mm:ss)");
         LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
-        // System.out.println("Akhir Rental kapan : (dd-MM-yyyy HH:mm:ss)");
-        // LocalDateTime entRent = InputUtilities.getDateTimeFromInput();
-
         System.out.println("Berapa lama anda merental?");
+        int lamaRental = InputUtilities.readInt();
+
+        transaksiPresenter.cookTransaksi(
+            lamaRental,
+            startRent,
+            idUser,
+            keranjangProduk
+        );
         
 
     }
