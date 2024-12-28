@@ -30,17 +30,20 @@ public class Transaksi {
     }
 
     public void setListProduk(DllProduk listProduk) {
+        calculateTotalPrice();
         this.listProduk = listProduk;
     }
 
     @Override
     public String toString() {
+        calculateTotalPrice();
+        calcluatedue();
         return "Transaksi\n" +
                 "id_transaksi: " + id_transaksi +
                 "\nrental_duration: " + rental_duration +
-                "\nrental_fine: " + Formatter.formatRupiah(getRental_fine()) +
-                "\nrental_due: " + rental_due +
-                "\ntotal_price: " + Formatter.formatRupiah(getRental_due()) +
+                "\nrental_fine: " + this.rental_fine +  //Formatter.formatRupiah(getRental_fine()) +
+                "\nrental_due: " + this.rental_due +
+                "\ntotal_price: " + this.total_price+ //Formatter.formatRupiah(getRental_due()) +
                 "\nrental_start: " + rental_start +
                 "\nrental_end: " + rental_end +
                 "\nrental_status: " + rental_status +
@@ -72,6 +75,13 @@ public class Transaksi {
         this.rental_fine = rental_fine;
     }
 
+    private void calculateTotalPrice(){
+        // calculate total price based on accumulation of product price in list product with the rental duration
+        long total = 0;
+
+
+
+    }
     private void calcluatedue(){
         // calculate rental due based on rental duration, current date and rental start date
         LocalDateTime now = LocalDateTime.now();
@@ -168,6 +178,8 @@ public class Transaksi {
         this.pic = pic;
         this.customer = customer;
         listProduk = new DllProduk();
+
+        calculateTotalPrice();
     }
 
 

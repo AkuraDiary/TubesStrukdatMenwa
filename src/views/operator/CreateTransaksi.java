@@ -11,6 +11,7 @@ import data.schemas.adt.DllProduk;
 import presenter.CustomerPresenter;
 import presenter.ProdukPresenter;
 import presenter.TransaksiPresenter;
+import util.AppEnums;
 import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
@@ -112,6 +113,7 @@ public class CreateTransaksi {
     private void keranjang() {
         int cek = 1;
         while (cek != 0) {
+            System.out.println();
             System.out.println("Menu Keranjang");
 
             System.out.println("1. Tambah Produk");
@@ -124,15 +126,16 @@ public class CreateTransaksi {
             if (inputUser.equals("0")) {
                 cek = 0;
             } else {
-                System.out.print("Masukkan Id product : ");
-                int idProduk = InputUtilities.readInt();
-                produkPresenter.selectProduk(idProduk);
-                if (produkPresenter.selectedProduk == null) {
-                    System.out.println("Produk tidak ditemukan");
-                    continue;
-                }
+                int idProduk = -1;
                 switch (inputUser) {
                     case "1":
+                        System.out.print("Masukkan Id product : ");
+                         idProduk = InputUtilities.readInt();
+                        produkPresenter.selectProduk(idProduk);
+                        if (produkPresenter.selectedProduk == null) {
+                            System.out.println("Produk tidak ditemukan");
+                            continue;
+                        }
                         keranjangProduk.insertSorted(produkPresenter.selectedProduk);
                         break;
                     case "2":
@@ -140,7 +143,14 @@ public class CreateTransaksi {
                             System.out.println("Keranjang masih kosong");
                             break;
                         }
-                        keranjangProduk.deleteById(produkPresenter.selectedProduk.getProdukId());
+                        System.out.print("Masukkan Id product : ");
+                        idProduk = InputUtilities.readInt();
+                        produkPresenter.selectProduk(idProduk);
+                        if (produkPresenter.selectedProduk == null) {
+                            System.out.println("Produk tidak ditemukan");
+                            continue;
+                        }
+                        keranjangProduk.deleteById(idProduk);
                         break;
                     default:
                         break;
@@ -168,7 +178,6 @@ public class CreateTransaksi {
         // habis jumatan
         System.out.print("Mulai Rental kapan (dd-MM-yyyy HH:mm:ss) : ");
         LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
-
         // validate startRent is not before now
         assert startRent != null;
         if (startRent.isBefore(LocalDateTime.now())) {
@@ -178,6 +187,10 @@ public class CreateTransaksi {
 
         System.out.print("Berapa lama anda merental? [ " + keranjangProduk.getHead().getData().getProdukRentalInterval() +" ] : ");
         int lamaRental = InputUtilities.readInt();
+        if (lamaRental <= 0) {
+            System.out.println("Lama rental tidak boleh kurang dari 1");
+            return;
+        }
 
         transaksiPresenter.cookTransaksi(
                 lamaRental,
@@ -186,17 +199,22 @@ public class CreateTransaksi {
                 keranjangProduk
         );
 
-//        keranjangProduk.clear();
-//        idUser = -1;
+
 
         System.out.println();
-        transaksiPresenter.getListTransaksiFiltered(null, null, -1, -1, null);
+        transaksiPresenter.getListTransaksiFiltered(null, AppEnums.StatusTransaksi.Pending, -1, -1, null);
         transaksiPresenter.listSelectedTransaksi.display();
         System.out.println();
 
+        if (transaksiPresenter.listSelectedTransaksi.getHead() == null) {
+            System.out.println("Transaksi Gagal Dibuat");
+            return;
+        }
+
+        keranjangProduk.clear();
+        idUser = -1;
         System.out.println("Transaksi Berhasil Dibuat Silahkan Tunggu Konfirmasi Dari Admin");
         InputUtilities.pressEnter();
-//        AppRouter.navigateTo(OPERATOR_MENU);
 
     }
 
