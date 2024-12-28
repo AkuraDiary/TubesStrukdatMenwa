@@ -118,7 +118,7 @@ public class MasterCustomerMenu {
             System.out.println("Tambah Customer");
             System.out.print("Masukkan Nama Customer : ");
             String custName = InputUtilities.readLine();
-            System.out.print("Masukkan Email Custoemer");
+            System.out.print("Masukkan Email Custoemer : ");
             String custEmail = InputUtilities.readLine();
             System.out.print("Masukkan Nomor identitas : ");
             String custNumIdent = InputUtilities.readLine();

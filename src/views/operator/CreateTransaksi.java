@@ -16,6 +16,7 @@ import util.Formatter;
 import util.InputUtilities;
 import views.AppRouter;
 import views.AppRouter.AppRoute;
+import static util.AppEnums.ProdukStatus.Available;
 
 public class CreateTransaksi {
     private final TransaksiPresenter transaksiPresenter;
@@ -222,7 +223,7 @@ public class CreateTransaksi {
     private void listProduk() {
         System.out.println();
         System.out.println("List Produk");
-        produkPresenter.getAllProduk(AppEnums.ProdukStatus.Available).display();
+        produkPresenter.getAllProduk(Available).display();
         System.out.println();
     }
 
