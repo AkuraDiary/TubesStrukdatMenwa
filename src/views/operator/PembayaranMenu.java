@@ -44,7 +44,6 @@ public class PembayaranMenu {
                     case "0":
                         AppRouter.navigateTo(OPERATOR_MENU);
                         break;
-
                     default:
                         break;
                 }
@@ -52,7 +51,6 @@ public class PembayaranMenu {
         } catch (Exception e) {
             Formatter.formatMessageOutput(e.getMessage());
             invalidChoice();
-            // TODO: handle exception
         }
     }
 

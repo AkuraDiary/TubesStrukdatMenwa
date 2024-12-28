@@ -33,7 +33,6 @@ public class Di {
     //MENUS
 
 
-
     public Di() {
         System.out.println("DI Initialization");
 
@@ -52,8 +51,8 @@ public class Di {
         userPresenter = new UserPresenter(userRepository);
         customerPresenter = new CustomerPresenter(customerRepository);
         produkPresenter = new ProdukPresenter(produkRepository);
-        laporanPresenter = new LaporanPresenter(userRepository,transaksiRepository ,laporanRepository);
-        transaksiPresenter = new TransaksiPresenter(userRepository, transaksiRepository,produkRepository,customerRepository);
+        laporanPresenter = new LaporanPresenter(userRepository, transaksiRepository, laporanRepository);
+        transaksiPresenter = new TransaksiPresenter(userRepository, transaksiRepository, produkRepository, customerRepository);
 
 
         System.out.println("DI Initialization Done");
@@ -63,5 +62,6 @@ public class Di {
         productDataSource.initDataProduct();
         customerDataSource.initializeDataCustomer();
         userDataSource.initDataUser();
+        transaksiDataSource.initDataTransaksis(productDataSource.productList, customerDataSource.customerList, userDataSource.userList.getTail().getData());
     }
 }
