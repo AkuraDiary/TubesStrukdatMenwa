@@ -99,8 +99,14 @@ public class DllTransaksi {
     public void insertSortedByStartDate(Transaksi data) {
         NodeTransaksi newNode = new NodeTransaksi(data);
         NodeTransaksi current = head;
+        if (current == null) {
+            // initial case
+            insertFirst(data);
+            return;
+        }
         while (current != null) {
-            if (current.getData().getRental_start().compareTo(data.getRental_start()) > 0) {
+
+            if (current.getData().getRental_start().isAfter(data.getRental_start())) {
                 if (current == head) {
                     insertFirst(data);
                 } else {

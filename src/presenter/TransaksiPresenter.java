@@ -51,7 +51,8 @@ public class TransaksiPresenter {
                 AppEnums.StatusTransaksi.Pending,
                 rentalInterval,
                 userRepository.getLoggedInUser(),
-                customer);
+                customer
+        );
         transaksiData.setListProduk(listProduk);
         updateRentProductStatus(listProduk, AppEnums.ProdukStatus.Rented);
         transaksiRepository.addTransaksi(transaksiData);
@@ -92,9 +93,6 @@ public class TransaksiPresenter {
         }
     }
 
-    public DllTransaksi getListTransaksiRunning(){
-        return transaksiRepository.getAllTransaksi();
-    }
 
     public void getListTransaksiFiltered(
             Date tanggalTransaksi,
@@ -102,6 +100,7 @@ public class TransaksiPresenter {
             int idCustomer,
             int idUser, 
             AppEnums.RentalInterval rentalInterval) {
+
         if (tanggalTransaksi != null) {
             transaksiRepository.selectTransaksisByDate(tanggalTransaksi);
         } else if (statusTransaksi != null) {
@@ -110,10 +109,13 @@ public class TransaksiPresenter {
             transaksiRepository.selectTransaksisByCustomer(idCustomer);
         } else if (idUser != -1) {
             transaksiRepository.selectTransaksiByUserId(idUser);
-        } else {
+        } else if(rentalInterval != null){
             transaksiRepository.selectTransaksiByInterval(rentalInterval);
+        }else {
+            transaksiRepository.getAllTransaksi();
         }
-        listSelectedTransaksi = transaksiRepository.selectedTransaksiList;
+
+        listSelectedTransaksi = transaksiRepository.getSelectedListTransaksi();
     }
 
 }

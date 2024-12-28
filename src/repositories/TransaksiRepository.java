@@ -46,7 +46,7 @@ public class TransaksiRepository {
         selectedTransaksiList = temp;
     }
 
-    public DllTransaksi selectTransaksisByDate(LocalDateTime dateStart, LocalDateTime dateEnd) {
+    public void selectTransaksisByDate(LocalDateTime dateStart, LocalDateTime dateEnd) {
         NodeTransaksi current = transaksiDataSource.transaksiList.getHead();
         DllTransaksi temp = new DllTransaksi();
         while (current != null) {
@@ -55,7 +55,7 @@ public class TransaksiRepository {
             }
             current = current.getNext();
         }
-        return temp;
+        selectedTransaksiList =  temp;
     }
 
     public void selectTransaksisByCustomer(int id) {
@@ -118,7 +118,11 @@ public class TransaksiRepository {
         transaksiDataSource.transaksiList.insertSortedByStartDate(transaksi);
     }
 
-    public DllTransaksi getAllTransaksi(){
-        return transaksiDataSource.transaksiList;
+    public void getAllTransaksi(){
+        selectedTransaksiList = transaksiDataSource.transaksiList;
+    }
+
+    public DllTransaksi getSelectedListTransaksi() {
+        return selectedTransaksiList;
     }
 }

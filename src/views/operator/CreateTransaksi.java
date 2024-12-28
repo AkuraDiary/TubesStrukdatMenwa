@@ -19,9 +19,9 @@ import views.AppRouter.AppRoute;
 public class CreateTransaksi {
     private final TransaksiPresenter transaksiPresenter;
 
-    public CreateTransaksi(ProdukPresenter produkPresenter,CustomerPresenter custPresenter,TransaksiPresenter transaksiPresenter) {
-        this.produkPresenter= produkPresenter;
-        this.custPresenter=custPresenter;
+    public CreateTransaksi(ProdukPresenter produkPresenter, CustomerPresenter custPresenter, TransaksiPresenter transaksiPresenter) {
+        this.produkPresenter = produkPresenter;
+        this.custPresenter = custPresenter;
         this.transaksiPresenter = transaksiPresenter;
     }
 
@@ -30,11 +30,20 @@ public class CreateTransaksi {
         InputUtilities.cls();
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
             try {
+                System.out.println();
                 System.out.println("Create Transaksi Menu");
-                System.out.println("1. List Customer");
-                System.out.println("2. List Product");
-                System.out.println("3. Masukkan Barang Ke Keranjang");
-                System.out.println("4. Create Transaksi");
+                if(idUser == -1){
+                    System.out.println("Anda belum memilih customer");
+                }else{
+                    System.out.println("Customer : " + custPresenter.selectedCust.getName());
+                }
+                System.out.println();
+                System.out.println("1. Pilih Customer");
+                System.out.println("2. List Customer");
+                System.out.println("3. List Product");
+                System.out.println("4. Keranjang Transaksi");
+                System.out.println("5. Lihat Keranjang");
+                System.out.println("6. Checkout Transaksi");
                 System.out.println("0. Kembali");
                 System.out.println();
                 System.out.print("Masukkan Pilihan : ");
@@ -42,23 +51,50 @@ public class CreateTransaksi {
                 String inputUser = InputUtilities.inputReader.readLine();
                 switch (inputUser) {
                     case "1":
+                        selectCustomer();
+                        break;
+                    case "2":
                         listCustomer();
                         break;
 
-                    case "2":
+                    case "3":
                         listProduk();
                         break;
 
-                    case "3":
+                    case "4":
                         keranjang();
                         break;
 
-                    case "4":
+                    case "5":
+                        System.out.println();
+                        System.out.println("Keranjang Produk");
+                        keranjangProduk.display();
+                        System.out.println();
+                        break;
+                    case "6":
+                        if(idUser == -1){
+                            System.out.println("Anda belum memilih customer");
+                            break;
+                        }
+                        if(keranjangProduk.getHead() == null){
+                            System.out.println("Keranjang masih kosong");
+                            break;
+                        }
                         doCreateTransaksi();
                         break;
 
                     case "0":
-                        AppRouter.navigateTo(OPERATOR_MENU);
+                        // konfirmasi keluar
+                        System.out.println("Apakah anda yakin ingin keluar dari transaksi? (semua item di keranjang akan hilang)");
+                        System.out.println("1. Ya");
+                        System.out.println("0. Tidak");
+                        System.out.print("Pilihan : ");
+                        inputUser = InputUtilities.readLine();
+                        assert inputUser != null;
+                        if (inputUser.equals("1")) {
+                            keranjangProduk.clear();
+                            AppRouter.navigateTo(OPERATOR_MENU);
+                        }
                         break;
 
                     default:
@@ -67,48 +103,91 @@ public class CreateTransaksi {
             } catch (Exception e) {
                 Formatter.formatMessageOutput(e.getMessage());
                 invalidChoice();
-                // TODO: handle exception
             }
         }
     }
 
-    DllProduk keranjangProduk ;
-    private void keranjang(){
-        int cek =1;
-        while (cek!=0) {
+    DllProduk keranjangProduk = new DllProduk();
+
+    private void keranjang() {
+        int cek = 1;
+        while (cek != 0) {
             System.out.println("Menu Keranjang");
-            System.out.println("Masukkan Id product : ");
-            int idProduk= InputUtilities.readInt();
-            produkPresenter.selectProduk(idProduk);
 
-            keranjangProduk.insertSorted(produkPresenter.selectedProduk);
-
-            System.out.println("1. Masukkan Product lagi");
+            System.out.println("1. Tambah Produk");
+            System.out.println("2. Hapus Produk");
             System.out.println("0. Kembali");
+
             System.out.print("Pilihan : ");
             String inputUser = InputUtilities.readLine();
+            assert inputUser != null;
             if (inputUser.equals("0")) {
-                cek=0;
+                cek = 0;
+            } else {
+                System.out.print("Masukkan Id product : ");
+                int idProduk = InputUtilities.readInt();
+                produkPresenter.selectProduk(idProduk);
+                if (produkPresenter.selectedProduk == null) {
+                    System.out.println("Produk tidak ditemukan");
+                    continue;
+                }
+                switch (inputUser) {
+                    case "1":
+                        keranjangProduk.insertSorted(produkPresenter.selectedProduk);
+                        break;
+                    case "2":
+                        if (keranjangProduk.getHead() == null) {
+                            System.out.println("Keranjang masih kosong");
+                            break;
+                        }
+                        keranjangProduk.deleteById(produkPresenter.selectedProduk.getProdukId());
+                        break;
+                    default:
+                        break;
+                }
+
             }
+
 
         }
     }
+
+    int idUser = -1;
+
+    private void selectCustomer() {
+        System.out.print("Masukkan Id Customer : ");
+        idUser = InputUtilities.readInt();
+        custPresenter.selectCustomer(idUser);
+        if (custPresenter.selectedCust == null) {
+            System.out.println("Customer tidak ditemukan");
+            idUser = -1;
+        }
+    }
+
     private void doCreateTransaksi() {
         // habis jumatan
-        System.out.print("Masukkan Id Customer : ");
-        int idUser = InputUtilities.readInt();
-        System.out.println("Mulai Rental kapan : (dd-MM-yyyy HH:mm:ss)");
+        System.out.print("Mulai Rental kapan (dd-MM-yyyy HH:mm:ss) : ");
         LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
-        System.out.println("Berapa lama anda merental?");
+
+        System.out.print("Berapa lama anda merental? [ " + keranjangProduk.getHead().getData().getProdukRentalInterval() +" ] : ");
         int lamaRental = InputUtilities.readInt();
 
         transaksiPresenter.cookTransaksi(
-            lamaRental,
-            startRent,
-            idUser,
-            keranjangProduk
+                lamaRental,
+                startRent,
+                idUser,
+                keranjangProduk
         );
-        
+
+//        keranjangProduk.clear();
+//        idUser = -1;
+
+        transaksiPresenter.getListTransaksiFiltered(null, null, -1, -1, null);
+        transaksiPresenter.listSelectedTransaksi.display();
+
+        System.out.println("Transaksi Berhasil Dibuat Silahkan Tunggu Konfirmasi Dari Admin");
+        InputUtilities.pressEnter();
+//        AppRouter.navigateTo(OPERATOR_MENU);
 
     }
 

@@ -138,12 +138,10 @@ public class InputUtilities {
             // String inputString = "20-11-2024 13:30:00";
             return LocalDateTime.parse(inputDate, formatter);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return null;
-        } catch (Exception e) {
-            return null;
-            // TODO: handle exception
+
         }
     }
 

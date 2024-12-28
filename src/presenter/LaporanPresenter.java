@@ -28,8 +28,8 @@ public class LaporanPresenter {
             LocalDateTime tanggalAwal,
             LocalDateTime tanggalAkhir
     ) {
-
-        DllTransaksi listTransaksi = transaksiRepository.selectTransaksisByDate(tanggalAwal, tanggalAkhir);
+        transaksiRepository.selectTransaksisByDate(tanggalAwal, tanggalAkhir);
+        DllTransaksi listTransaksi = transaksiRepository.getSelectedListTransaksi();
         Laporan laporan = new Laporan(
                 -1,
                 new Date(),

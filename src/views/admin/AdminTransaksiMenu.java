@@ -87,9 +87,17 @@ public class AdminTransaksiMenu {
     }
 
     private void listTransaksi() {
+
+//        transaksiPresenter.getListTransaksiFiltered(
+//                null,
+//                AppEnums.StatusTransaksi.Pending,
+//                -1,
+//                -1,
+//                null
+//        );
         transaksiPresenter.getListTransaksiFiltered(
                 null,
-                AppEnums.StatusTransaksi.Pending,
+null,
                 -1,
                 -1,
                 null

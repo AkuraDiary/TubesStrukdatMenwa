@@ -155,6 +155,7 @@ public class DllCustomer {
         while (current != null) {
             System.out.println(current.getData());
             current = current.getNext();
+            System.out.println();
         }
     }
 
