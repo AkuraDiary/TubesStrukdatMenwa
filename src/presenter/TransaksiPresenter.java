@@ -43,6 +43,11 @@ public class TransaksiPresenter {
         AppEnums.RentalInterval rentalInterval = listProduk.getHead().getData().getProdukRentalInterval();
         LocalDateTime rental_end = calcuateRentalEnd(rental_start, rental_duration, rentalInterval);
         Customer customer = customerRepository.getAllCustomers().searchById(idCustomer);
+
+        System.out.println("Rental Start : " + rental_start);
+        System.out.println("Rental Duration : " + rental_duration);
+        System.out.println("Rental End : " + rental_end);
+
         Transaksi transaksiData = new Transaksi(
                 -1,
                 rental_duration,

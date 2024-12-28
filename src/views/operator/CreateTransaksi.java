@@ -169,6 +169,13 @@ public class CreateTransaksi {
         System.out.print("Mulai Rental kapan (dd-MM-yyyy HH:mm:ss) : ");
         LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
 
+        // validate startRent is not before now
+        assert startRent != null;
+        if (startRent.isBefore(LocalDateTime.now())) {
+            System.out.println("Waktu rental tidak boleh sebelum waktu sekarang");
+            return;
+        }
+
         System.out.print("Berapa lama anda merental? [ " + keranjangProduk.getHead().getData().getProdukRentalInterval() +" ] : ");
         int lamaRental = InputUtilities.readInt();
 
@@ -182,8 +189,10 @@ public class CreateTransaksi {
 //        keranjangProduk.clear();
 //        idUser = -1;
 
+        System.out.println();
         transaksiPresenter.getListTransaksiFiltered(null, null, -1, -1, null);
         transaksiPresenter.listSelectedTransaksi.display();
+        System.out.println();
 
         System.out.println("Transaksi Berhasil Dibuat Silahkan Tunggu Konfirmasi Dari Admin");
         InputUtilities.pressEnter();

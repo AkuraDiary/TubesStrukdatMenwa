@@ -38,9 +38,9 @@ public class Transaksi {
         return "Transaksi\n" +
                 "id_transaksi: " + id_transaksi +
                 "\nrental_duration: " + rental_duration +
-                "\nrental_fine: " + Formatter.formatRupiah(rental_fine) +
+                "\nrental_fine: " + Formatter.formatRupiah(getRental_fine()) +
                 "\nrental_due: " + rental_due +
-                "\ntotal_price: " + Formatter.formatRupiah(total_price) +
+                "\ntotal_price: " + Formatter.formatRupiah(getRental_due()) +
                 "\nrental_start: " + rental_start +
                 "\nrental_end: " + rental_end +
                 "\nrental_status: " + rental_status +
