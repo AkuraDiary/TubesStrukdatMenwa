@@ -92,8 +92,7 @@ public class TransaksiPresenter {
         transaksiRepository.selectTransaksi(idTransaksi);
         transaksiRepository.updateTransaksi(idTransaksi, transaksi);
 
-        if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected
-                || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
+        if (transaksi.getRental_status() == AppEnums.StatusTransaksi.Rejected || transaksi.getRental_status() == AppEnums.StatusTransaksi.Done) {
             updateRentProductStatus(transaksi.getListProduk(), AppEnums.ProdukStatus.Available);
         }
     }
