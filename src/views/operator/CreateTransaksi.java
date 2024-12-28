@@ -201,10 +201,10 @@ public class CreateTransaksi {
 
 
 
-        System.out.println();
+//        System.out.println();
         transaksiPresenter.getListTransaksiFiltered(null, AppEnums.StatusTransaksi.Pending, -1, -1, null);
-        transaksiPresenter.listSelectedTransaksi.display();
-        System.out.println();
+//        transaksiPresenter.listSelectedTransaksi.display();
+//        System.out.println();
 
         if (transaksiPresenter.listSelectedTransaksi.getHead() == null) {
             System.out.println("Transaksi Gagal Dibuat");
@@ -215,6 +215,7 @@ public class CreateTransaksi {
         idUser = -1;
         System.out.println("Transaksi Berhasil Dibuat Silahkan Tunggu Konfirmasi Dari Admin");
         InputUtilities.pressEnter();
+        AppRouter.navigateTo(AppRoute.OPERATOR_MENU);
 
     }
 
