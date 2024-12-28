@@ -5,6 +5,7 @@ package data.schemas.models;
 
 import data.schemas.adt.DllProduk;
 
+import data.schemas.nodes.NodeProduk;
 import util.AppEnums;
 import util.Formatter;
 
@@ -41,9 +42,9 @@ public class Transaksi {
         return "Transaksi\n" +
                 "id_transaksi: " + id_transaksi +
                 "\nrental_duration: " + rental_duration +
-                "\nrental_fine: " + this.rental_fine +  //Formatter.formatRupiah(getRental_fine()) +
+                "\nrental_fine: " + Formatter.formatRupiah(this.rental_fine) +
                 "\nrental_due: " + this.rental_due +
-                "\ntotal_price: " + this.total_price+ //Formatter.formatRupiah(getRental_due()) +
+                "\ntotal_price: " + Formatter.formatRupiah(this.total_price) +
                 "\nrental_start: " + rental_start +
                 "\nrental_end: " + rental_end +
                 "\nrental_status: " + rental_status +
@@ -75,14 +76,18 @@ public class Transaksi {
         this.rental_fine = rental_fine;
     }
 
-    private void calculateTotalPrice(){
+    private void calculateTotalPrice() {
         // calculate total price based on accumulation of product price in list product with the rental duration
         long total = 0;
-
-
-
+        NodeProduk current = listProduk.getHead();
+        while (current != null) {
+            total += current.getData().getProdukRentalPrice();
+            current = current.getNext();
+        }
+        total_price = total * rental_duration;
     }
-    private void calcluatedue(){
+
+    private void calcluatedue() {
         // calculate rental due based on rental duration, current date and rental start date
         LocalDateTime now = LocalDateTime.now();
         boolean isDue = switch (rental_interval) {
@@ -108,6 +113,7 @@ public class Transaksi {
         // fine is calculated by this formula: fine = due * 10% of total price
         this.rental_fine = (int) (rental_due * 0.1 * total_price);
     }
+
     public int getRental_due() {
         calcluatedue();
         return rental_due;
@@ -116,7 +122,6 @@ public class Transaksi {
     public void setRental_due(int rental_due) {
         this.rental_due = rental_due;
     }
-
 
 
     public long getTotal_price() {
