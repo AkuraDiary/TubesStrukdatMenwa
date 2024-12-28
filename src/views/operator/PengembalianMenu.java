@@ -32,6 +32,7 @@ public class PengembalianMenu {
                 System.out.println();
                 System.out.print("Masukkan pilihan : ");
                 String inputUser = InputUtilities.readLine();
+                assert inputUser != null;
                 switch (inputUser) {
                     case "1":
                         showAllTransaksi();

@@ -136,6 +136,10 @@ public class CreateTransaksi {
                             System.out.println("Produk tidak ditemukan");
                             continue;
                         }
+                        if (produkPresenter.selectedProduk.getProdukStatus() != AppEnums.ProdukStatus.Available) {
+                            System.out.println("Produk tidak Tersedia");
+                            continue;
+                        }
                         keranjangProduk.insertSorted(produkPresenter.selectedProduk);
                         break;
                     case "2":
@@ -175,7 +179,6 @@ public class CreateTransaksi {
     }
 
     private void doCreateTransaksi() {
-        // habis jumatan
         System.out.print("Mulai Rental kapan (dd-MM-yyyy HH:mm:ss) : ");
         LocalDateTime startRent = InputUtilities.getDateTimeFromInput();
         // validate startRent is not before now
@@ -219,7 +222,7 @@ public class CreateTransaksi {
     private void listProduk() {
         System.out.println();
         System.out.println("List Produk");
-        produkPresenter.getAllProduk(null).display();
+        produkPresenter.getAllProduk(AppEnums.ProdukStatus.Available).display();
         System.out.println();
     }
 
