@@ -63,7 +63,7 @@ public class ProdukPresenter {
     ) {
         if(status != null){
             produkRepository.selectProduksByStatus(status);
-            return selectedProdukList;
+            return produkRepository.selectedProdukList;
         }
         return produkRepository.getAllProduk();
     }
