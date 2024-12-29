@@ -61,8 +61,9 @@ public class AdminLaporanMenu {
         try {
             System.out.println();
             System.out.println("Buat Laporan Baru");
+            System.out.print("Masukkan Tanggal Awal Rentang [dd-MM-yyyy HH:mm:ss] : ");
             LocalDateTime dateRangeStart = InputUtilities.getDateTimeFromInput();
-            System.out.print("Masukkan Tanggal Akhir Rentang : ");
+            System.out.print("Masukkan Tanggal Akhir Rentang [dd-MM-yyyy HH:mm:ss] : ");
             LocalDateTime dateRangeEnd = InputUtilities.getDateTimeFromInput();
             laporanPresenter.cookLaporan(dateRangeStart, dateRangeEnd);
             System.out.println("Laporan Berhasil Dibuat");
@@ -77,10 +78,13 @@ public class AdminLaporanMenu {
         try {
             System.out.println();
             System.out.println("Tampil Detail Laporan");
-            System.out.print("Masukkan idLaporan");
+            System.out.print("Masukkan idLaporan : ");
             int idLaporan = InputUtilities.readInt();
 
             laporanPresenter.selectLaporanById(idLaporan);
+            if (laporanPresenter.selectedLaporan == null) {
+                throw new Exception("Laporan Tidak Ditemukan");
+            }
             System.out.println("Detail Laporan");
             System.out.println(laporanPresenter.selectedLaporan.toString());
             System.out.println("Daftar Transaksi");
