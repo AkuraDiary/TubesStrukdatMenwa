@@ -78,6 +78,7 @@ public class PembayaranMenu {
                 assert input != null;
                 if(input.equalsIgnoreCase("Y")){
                     transaksiPresenter.selectedTransaksi.setRental_status(Done);
+                    System.out.println("Transaksi Berhasil Dibayar");
                 }else{
                     System.out.println("Pembayaran Dibatalkan");
                     return;
@@ -91,6 +92,7 @@ public class PembayaranMenu {
                 assert input != null;
                 if(input.equalsIgnoreCase("Y")){
                     transaksiPresenter.selectedTransaksi.setRental_status(Running);
+                    System.out.println("Transaksi Berhasil Dibayar");
                 }else {
                     System.out.println("Pembayaran Dibatalkan");
                     return;
@@ -100,6 +102,7 @@ public class PembayaranMenu {
         }else{
             System.out.println("id tidak ditemukan");
         }
+        System.out.println();
     }
 
     private void showAllTransaksi() {

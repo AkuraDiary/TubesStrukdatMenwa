@@ -87,6 +87,7 @@ public class AdminLaporanMenu {
             }
             System.out.println("Detail Laporan");
             System.out.println(laporanPresenter.selectedLaporan.toString());
+            System.out.println();
             System.out.println("Daftar Transaksi");
             laporanPresenter.selectedLaporan.getListTransaksi().display();
 
@@ -108,11 +109,12 @@ public class AdminLaporanMenu {
                 System.out.print("Masukkan Tanggal : ");
                 Date tanggal = InputUtilities.getDateFromInput();
                 laporanPresenter.getAllLaporanBasedOnTanggal(tanggal);
-
             }else{
                 laporanPresenter.getAllLaporan();
             }
 
+            System.out.println();
+            System.out.println("Daftar Laporan");
             laporanPresenter.selectedLaporanList.display();
 
             System.out.println();

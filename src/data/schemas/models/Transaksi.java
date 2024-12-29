@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Transaksi {
-    int id_transaksi, rental_duration, rental_fine, rental_due;
-    long total_price;
+    int id_transaksi, rental_duration, rental_fine=0, rental_due;
+    long total_price =0L;
     User pic;
     Customer customer;
     LocalDateTime rental_start, rental_end;
@@ -42,9 +42,9 @@ public class Transaksi {
         return "Transaksi\n" +
                 "id_transaksi: " + id_transaksi +
                 "\nrental_duration: " + rental_duration +
-                "\nrental_fine: " + Formatter.formatRupiah(this.rental_fine) +
+                "\nrental_fine: " + Formatter.formatRupiah((double) this.rental_fine) +
                 "\nrental_due: " + this.rental_due +
-                "\ntotal_price: " + Formatter.formatRupiah(this.total_price) +
+                "\ntotal_price: " + Formatter.formatRupiah((double) this.total_price) +
                 "\nrental_start: " + rental_start +
                 "\nrental_end: " + rental_end +
                 "\nrental_status: " + rental_status +
@@ -69,16 +69,16 @@ public class Transaksi {
 
     public int getRental_fine() {
         calcluatedue();
-        return rental_fine;
+        return this.rental_fine;
     }
 
     public void setRental_fine(int rental_fine) {
         this.rental_fine = rental_fine;
     }
 
-    private void calculateTotalPrice() {
+    public void calculateTotalPrice() {
         // calculate total price based on accumulation of product price in list product with the rental duration
-        long total = 0;
+        long total = 0L;
         NodeProduk current = listProduk.getHead();
         while (current != null) {
             total += current.getData().getProdukRentalPrice();
@@ -87,7 +87,8 @@ public class Transaksi {
         total_price = total * rental_duration;
     }
 
-    private void calcluatedue() {
+    public void calcluatedue() {
+        calculateTotalPrice();
         // calculate rental due based on rental duration, current date and rental start date
         LocalDateTime now = LocalDateTime.now();
         boolean isDue = switch (rental_interval) {
@@ -125,6 +126,7 @@ public class Transaksi {
 
 
     public long getTotal_price() {
+        calculateTotalPrice();
         return total_price;
     }
 
@@ -185,6 +187,7 @@ public class Transaksi {
         listProduk = new DllProduk();
 
         calculateTotalPrice();
+        calcluatedue();
     }
 
 

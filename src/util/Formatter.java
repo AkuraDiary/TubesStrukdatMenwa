@@ -11,12 +11,12 @@ public class Formatter {
     }
 
     public static String formatRupiah(int nominal) {
-        String hasil = String.format("%,.0f", nominal).replaceAll(",", ".");
+        String hasil = String.format("%,d", nominal).replaceAll(",", ".");
         return "Rp" + hasil;
     }
 
     public static String formatRupiah(long nominal) {
-        String hasil = String.format("%,.0f", nominal).replaceAll(",", ".");
+        String hasil = String.format("%,d", nominal).replaceAll(",", ".");
         return "Rp" + hasil;
     }
 

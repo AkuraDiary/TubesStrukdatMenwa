@@ -66,6 +66,7 @@ public class LaporanPresenter {
     }
 
     public void getAllLaporan() {
+        laporanRepository.getAllLaporan();
         selectedLaporanList = laporanRepository.getAllLaporan();
     }
 
