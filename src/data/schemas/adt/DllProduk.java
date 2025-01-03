@@ -18,7 +18,7 @@ public class DllProduk {
     }
 
     public NodeProduk getHead() {
-        return head;
+        return this.head;
     }
 
     public void setHead(NodeProduk head) {

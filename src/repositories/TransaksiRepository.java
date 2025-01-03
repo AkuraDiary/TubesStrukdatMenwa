@@ -23,8 +23,10 @@ public class TransaksiRepository {
         if(data.getId_transaksi()==-1){
             data.setId_transaksi(transaksiDataSource.transaksiList.getSize()+1);
         }
+//        transaksiDataSource.transaksiList.insertLast(data);
+//        transaksiDataSource.transaksiList.display();
         transaksiDataSource.transaksiList.insertFirst(data);
-        System.out.println("Add Transaksi Success");
+//        System.out.println("Add Transaksi Success");
 
 
     }

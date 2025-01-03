@@ -31,8 +31,8 @@ public class Transaksi {
     }
 
     public void setListProduk(DllProduk listProduk) {
-        calculateTotalPrice();
         this.listProduk = listProduk;
+        calculateTotalPrice();
     }
 
     @Override
@@ -78,13 +78,19 @@ public class Transaksi {
 
     public void calculateTotalPrice() {
         // calculate total price based on accumulation of product price in list product with the rental duration
-        long total = 0L;
+        long total = 0;
         NodeProduk current = listProduk.getHead();
+//        System.out.println(current == null);
         while (current != null) {
-            total += current.getData().getProdukRentalPrice();
+            int productPrice = current.getData().getProdukRentalPrice();
+//            System.out.println("Product Price: " + productPrice);
+            total += productPrice;
             current = current.getNext();
         }
-        total_price = total * rental_duration;
+//        System.out.println("Rental Duration: " + rental_duration);
+//        System.out.println("Total: " + total);
+        total_price = (long) total * rental_duration;
+//        System.out.println("Total Price: " + total_price);
     }
 
     public void calcluatedue() {

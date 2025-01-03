@@ -8,7 +8,8 @@ package data.schemas.models;
 import util.AppEnums;
 
 public class Produk {
-    int produkId, produkRentalPrice;
+    int produkId;
+    int produkRentalPrice=0;
     AppEnums.ProdukStatus produkStatus;
     String produkName, produkBrand, produkNumber;
     AppEnums.RentalInterval produkRentalInterval;
@@ -18,6 +19,7 @@ public class Produk {
         this.produkName = produkName;
         this.produkNumber = produkNumber;
         this.produkBrand = produkBrand;
+//        System.out.println(produkRentalPrice);
         this.produkRentalPrice = produkRentalPrice;
         this.produkRentalInterval = produkRentalInterval;
         this.produkStatus = AppEnums.ProdukStatus.Available;
@@ -48,6 +50,7 @@ public class Produk {
     }
 
     public int getProdukRentalPrice() {
+//        System.out.println("Get Product Price : " + produkRentalPrice);
         return produkRentalPrice;
     }
 

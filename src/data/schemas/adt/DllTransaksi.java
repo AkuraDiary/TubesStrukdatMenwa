@@ -90,6 +90,7 @@ public class DllTransaksi {
             System.out.println("Data Kosong");
         }
         while (current != null) {
+            current.getData().calculateTotalPrice();
             System.out.println(current.getData());
             current = current.getNext();
             System.out.println();
@@ -98,7 +99,7 @@ public class DllTransaksi {
 
     public void insertSortedByStartDate(Transaksi data) {
         NodeTransaksi newNode = new NodeTransaksi(data);
-        NodeTransaksi current = head;
+        NodeTransaksi current = this.head;
         if (current == null) {
             // initial case
             insertFirst(data);
@@ -106,13 +107,14 @@ public class DllTransaksi {
         }
         while (current != null) {
             if (current.getData().getRental_start().isAfter(data.getRental_start())) {
-                if (current == head) {
+                if (current == this.head) {
                     insertFirst(data);
                 } else {
                     newNode.setNext(current);
                     newNode.setPrev(current.getPrev());
                     current.getPrev().setNext(newNode);
                     current.setPrev(newNode);
+
                 }
                 return;
 //                break;
