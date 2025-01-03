@@ -23,7 +23,10 @@ public class TransaksiRepository {
         if(data.getId_transaksi()==-1){
             data.setId_transaksi(transaksiDataSource.transaksiList.getSize()+1);
         }
-        transaksiDataSource.transaksiList.insertSortedByStartDate(data);
+        transaksiDataSource.transaksiList.insertFirst(data);
+        System.out.println("Add Transaksi Success");
+
+
     }
 
     public void deleteTransaksi(int id) {

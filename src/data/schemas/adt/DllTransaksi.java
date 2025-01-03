@@ -105,7 +105,6 @@ public class DllTransaksi {
             return;
         }
         while (current != null) {
-
             if (current.getData().getRental_start().isAfter(data.getRental_start())) {
                 if (current == head) {
                     insertFirst(data);
@@ -115,7 +114,8 @@ public class DllTransaksi {
                     current.getPrev().setNext(newNode);
                     current.setPrev(newNode);
                 }
-                break;
+                return;
+//                break;
             }
             current = current.getNext();
         }

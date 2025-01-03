@@ -57,6 +57,7 @@ public class Laporan {
         NodeTransaksi current = listTransaksi.getHead();
         while (current != null) {
             if (current.getData().getRental_status() == AppEnums.StatusTransaksi.Due) {
+
                 totalDueFine += current.getData().getRental_fine();
                 countTransaksiDue++;
             }
