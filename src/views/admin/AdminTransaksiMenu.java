@@ -52,7 +52,7 @@ public class AdminTransaksiMenu {
 
     private void approveRejectTransaksi() {
         try {
-            System.out.println("Masukkan ID Transaksi : ");
+            System.out.print("Masukkan ID Transaksi : ");
             int idTransaksi = InputUtilities.readInt();
             transaksiPresenter.selectTransaksi(idTransaksi);
             if(transaksiPresenter.selectedTransaksi == null){
